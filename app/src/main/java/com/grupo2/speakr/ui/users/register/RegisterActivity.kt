@@ -1,11 +1,12 @@
-package com.grupo2.speakr
+package com.grupo2.speakr.ui.users.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.grupo2.speakr.R
 
-class SpeakrAllListActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_speakr_all_list)
+        setContentView(R.layout.activity_register)
     }
 }
