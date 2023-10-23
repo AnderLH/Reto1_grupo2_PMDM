@@ -37,7 +37,6 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-        compose = true
         // ADD para que automaticamente asocie clases a vistas xml "MainActivityBinding" etc
         viewBinding = true
     }
