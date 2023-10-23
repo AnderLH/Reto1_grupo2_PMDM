@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    // ADD para poder pasar objetos entre actividades tienen que ser parcelables
+    // haremos las clases con los datos parcelables
+    id("org.jetbrains.kotlin.plugin.parcelize")
 }
 
 android {
@@ -33,6 +36,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+        // ADD para que automaticamente asocie clases a vistas xml "MainActivityBinding" etc
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -44,4 +52,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // ADD retrofit + gson para la conversion de strings en json a objetos y viceversa
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // ADD para utilizar viewmodels
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }
