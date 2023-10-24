@@ -13,7 +13,7 @@ import com.grupo2.speakr.utils.Resource
 
 class SongListActivity : ComponentActivity() {
 
-    private lateinit var songListAdapter: SongListAdapter
+    private lateinit var songListAdapter: SongAdapter
 
     private val songRepository = RemoteSongDataSource()
 
@@ -24,8 +24,14 @@ class SongListActivity : ComponentActivity() {
         val binding = ActivitySongsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.i("recorrido", "2")
+
+        // a la lista de empleados le incluyo el adapter de empleado
+        songListAdapter = SongAdapter()
+        binding.songsList.adapter = songListAdapter
 
         viewModel.items.observe(this, Observer {
+            Log.i("recorrido", "3")
             // esto es lo que se ejecuta cada vez que la lista en el VM cambia de valor
             Log.e("PruebasDia1", "ha ocurrido un cambio en la lista")
 

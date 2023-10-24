@@ -9,37 +9,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.databinding.ItemSongsBinding
 
-class SongListAdapter (
-    private val onClickListener: (Song) -> Unit
-): ListAdapter<Song, SongListAdapter.DepartmentViewHolder>(DepartmentDiffCallback()) {
+class SongAdapter(
+) : ListAdapter<Song, SongAdapter.SongViewHolder>(SongDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DepartmentViewHolder {
-        val binding =
-            ItemSongsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DepartmentViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
+        val binding = ItemSongsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SongViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: DepartmentViewHolder, position: Int) {
-        val department = getItem(position)
-        holder.bind(department)
-        holder.itemView.setOnClickListener(){
-            onClickListener(department)
-            Log.e("statusInfo", "departmentAdapter " + department.id.toString())
-
+    override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
+        val song = getItem(position)
+        holder.bind(song)
+        holder.itemView.setOnClickListener {
+            Log.e("statusInfo", "songAdapter " + song.id.toString())
         }
     }
 
-    inner class DepartmentViewHolder(private val binding: ItemSongsBinding) :
+    inner class SongViewHolder(private val binding: ItemSongsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(song: Song) {
             binding.textViewTitle.text = song.title
             binding.textViewSubtitle1.text = song.author
             binding.textViewSubtitle2.text = song.url
+            // Update other views as needed for your Song object
         }
     }
 
-    class DepartmentDiffCallback : DiffUtil.ItemCallback<Song>() {
+    class SongDiffCallback : DiffUtil.ItemCallback<Song>() {
 
         override fun areItemsTheSame(oldItem: Song, newItem: Song): Boolean {
             return oldItem.id == newItem.id
@@ -47,8 +44,7 @@ class SongListAdapter (
 
         override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
             return (oldItem.id == newItem.id && oldItem.title == newItem.title && oldItem.author == newItem.author && oldItem.url == newItem.url)
-            // return oldItem == newItem
+            // You can add more fields as needed to compare
         }
-
     }
 }

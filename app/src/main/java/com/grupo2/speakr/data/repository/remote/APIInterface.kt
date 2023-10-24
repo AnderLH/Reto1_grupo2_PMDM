@@ -5,6 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface APIInterface {
-    @GET("api/songs")
+    @GET("songs")
     suspend fun getSongs(): Response<List<Song>>
 }

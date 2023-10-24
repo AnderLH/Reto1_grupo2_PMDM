@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.songs.all
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,13 +18,13 @@ class SongViewModel (private val songRepository: CommonSongRepository) : ViewMod
 
     private val _items = MutableLiveData<Resource<List<Song>>>()
 
-    val items = MutableLiveData<Resource<List<Song>>>()
+    val items : LiveData<Resource<List<Song>>> get() = _items
 
     init{
-
+        updateSongList()
     }
 
-    fun updateSongList(){
+    private fun updateSongList(){
         viewModelScope.launch{
             val repoResponse = getSongsFromRepository()
 
@@ -31,7 +32,7 @@ class SongViewModel (private val songRepository: CommonSongRepository) : ViewMod
         }
     }
 
-    suspend fun getSongsFromRepository(): Resource<List<Song>>? {
+    private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO){
             songRepository.getSongs()
         }
