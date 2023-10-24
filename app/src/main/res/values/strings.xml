@@ -2,7 +2,7 @@
     <string name="app_name">Speakr</string>
     <string name="emailString">EMAIL</string>
     <string name="passString">PASSWORD</string>
-    <string name="repeatPassString">REPEAT IT</string>
+    <string name="repeatPassString">REPEAT PASSWORD</string>
     <string name="rememberMe">Remember Me</string>
     <string name="acceptButtonString">Accept</string>
     <string name="registerButtonString">Register</string>

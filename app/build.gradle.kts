@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -57,4 +58,5 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     // ADD para utilizar viewmodels
     api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
 }
