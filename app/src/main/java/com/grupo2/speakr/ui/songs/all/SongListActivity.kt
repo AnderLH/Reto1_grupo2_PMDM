@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.lifecycle.Observer
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
 import com.grupo2.speakr.databinding.ActivitySongsListBinding
