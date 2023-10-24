@@ -3,6 +3,7 @@ package com.grupo2.speakr.ui.users.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import com.grupo2.speakr.R
 import com.grupo2.speakr.ui.users.register.RegisterActivity
@@ -13,9 +14,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val bundle : Bundle? = intent.extras
+        val email : String? = bundle?.getStringArray("loginInfo")?.get(0)
+        val password : String? = bundle?.getStringArray("loginInfo")?.get(1)
+
+        Log.i("infoCheck", email.toString())
+        Log.i("infoCheck", password.toString())
+
         findViewById<Button>(R.id.buttonRegister).setOnClickListener{
             val intent = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         findViewById<Button>(R.id.buttonAccept).setOnClickListener{

@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.users.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,6 +11,7 @@ import com.grupo2.speakr.R
 import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
 import androidx.activity.viewModels
+import com.grupo2.speakr.ui.users.login.LoginActivity
 import com.grupo2.speakr.utils.Resource
 
 
@@ -37,8 +39,11 @@ class RegisterActivity : ComponentActivity() {
                 viewModel.created.observe(this) {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
-                            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                             Log.i("ConnectionCheck", it.message.toString())
+                            val intent = Intent(applicationContext, LoginActivity::class.java)
+                            intent.putExtra("loginInfo", arrayOf(email,password))
+                            startActivity(intent)
+                            finish()
                         }
                         Resource.Status.ERROR -> {
                             Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
