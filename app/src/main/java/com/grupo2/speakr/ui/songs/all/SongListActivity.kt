@@ -1,11 +1,15 @@
 package com.grupo2.speakr.ui.songs.all
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.grupo2.speakr.data.Song
 
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
 import com.grupo2.speakr.databinding.ActivitySongsListBinding
@@ -27,7 +31,7 @@ class SongListActivity : ComponentActivity() {
         Log.i("recorrido", "2")
 
         // a la lista de empleados le incluyo el adapter de empleado
-        songListAdapter = SongAdapter()
+        songListAdapter = SongAdapter(::onSongsListClickItem)
         binding.songsList.adapter = songListAdapter
 
         viewModel.items.observe(this, Observer {
@@ -53,4 +57,19 @@ class SongListActivity : ComponentActivity() {
         })
     }
 
+    private fun onSongsListClickItem(song: Song) {
+        Log.i("PRUEBA1", song.url)
+        this.openYoutubeLink(song.url)
+    }
+
+    fun openYoutubeLink(youtubeURL: String) {
+        val intentApp = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeURL))
+        val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeURL))
+        try {
+            this.startActivity(intentApp)
+        } catch (ex: ActivityNotFoundException) {
+            this.startActivity(intentBrowser)
+        }
+
+    }
 }
