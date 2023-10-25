@@ -8,4 +8,5 @@
     <string name="registerButtonString">Register</string>
     <string name="nameString">NAME</string>
     <string name="surnameString">SURNAME</string>
+    <string name="favorite">Favorite</string>
 </resources>

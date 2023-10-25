@@ -1,20 +1,25 @@
 <!-- res/layout/item_list.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/item_shape">
 
     <!-- Imagen -->
-    <ImageView
-        android:id="@+id/itemImage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:contentDescription="Imagen"
-        android:src="@android:drawable/ic_dialog_info" />
 
     <!-- Contenedor para el nombre y el autor -->
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:contentDescription="Image"
+        android:src="@drawable/ic_launcher_background"
+        />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +34,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:text="Song Name"
-            android:textColor="@android:color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <!-- Autor -->
@@ -38,15 +43,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Song Author"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="14sp" />
     </LinearLayout>
 
     <!-- Botón con imagen -->
     <ImageButton
         android:id="@+id/itemButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:contentDescription="Botón"
-        android:src="@android:drawable/btn_star" />
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:contentDescription="@string/favorite"
+        android:src="@android:drawable/btn_star"
+        tools:ignore="ImageContrastCheck" />
 </LinearLayout>
