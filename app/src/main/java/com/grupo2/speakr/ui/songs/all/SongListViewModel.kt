@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.songs.all
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,10 +43,14 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
                 song.title.contains(query, ignoreCase = true)
             }
         }
+        Log.d("LISTA", currentSongs.size.toString())
 
-        // Actualiza el LiveData con la lista filtrada
+        // Actualiza el LiveData con la lista filtrada o vacía si no hay
+
+
         _items.value = Resource.success(currentSongs)
     }
+
 
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {

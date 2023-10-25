@@ -42,7 +42,7 @@ class SongListActivity : ComponentActivity() {
 
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    if (!it.data.isNullOrEmpty()) {
+                    if (it.data != null) {
                         songListAdapter.submitList(it.data)
                     }
                 }
