@@ -14,26 +14,41 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SongViewModel (private val songRepository: CommonSongRepository) : ViewModel(){
-
+class SongViewModel(private val songRepository: CommonSongRepository) : ViewModel() {
     private val _items = MutableLiveData<Resource<List<Song>>>()
+    private var originalSongs: List<Song> = emptyList()
 
-    val items : LiveData<Resource<List<Song>>> get() = _items
+    val items: LiveData<Resource<List<Song>>>
+        get() = _items
 
-    init{
+    init {
         updateSongList()
     }
 
-    private fun updateSongList(){
-        viewModelScope.launch{
+    private fun updateSongList() {
+        viewModelScope.launch {
             val repoResponse = getSongsFromRepository()
-
             _items.value = repoResponse
+            originalSongs = repoResponse?.data.orEmpty() // Guarda la lista original
         }
     }
 
+    fun filterSongs(query: String) {
+        val currentSongs = originalSongs.toMutableList()
+
+        // Realiza el filtrado basado en la consulta
+        if (query.isNotBlank()) {
+            currentSongs.retainAll { song ->
+                song.title.contains(query, ignoreCase = true)
+            }
+        }
+
+        // Actualiza el LiveData con la lista filtrada
+        _items.value = Resource.success(currentSongs)
+    }
+
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             songRepository.getSongs()
         }
     }

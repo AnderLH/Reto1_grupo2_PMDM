@@ -4,6 +4,8 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -35,7 +37,6 @@ class SongListActivity : ComponentActivity() {
         binding.songsList.adapter = songListAdapter
 
         viewModel.items.observe(this, Observer {
-            Log.i("recorrido", "3")
             // esto es lo que se ejecuta cada vez que la lista en el VM cambia de valor
             Log.e("PruebasDia1", "ha ocurrido un cambio en la lista")
 
@@ -54,6 +55,24 @@ class SongListActivity : ComponentActivity() {
             }
 
             //
+        })
+
+        // Agrega un TextWatcher al campo de búsqueda para filtrar las canciones
+        val searchEditText = binding.searchSong
+
+        searchEditText.addTextChangedListener(/* watcher = */ object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // No es necesario implementar esto
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No es necesario implementar esto
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString()
+                viewModel.filterSongs(query)
+            }
         })
     }
 
