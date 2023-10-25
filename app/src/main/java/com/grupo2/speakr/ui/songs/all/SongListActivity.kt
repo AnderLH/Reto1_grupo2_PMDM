@@ -62,7 +62,7 @@ class SongListActivity : ComponentActivity() {
         this.openYoutubeLink(song.url)
     }
 
-    fun openYoutubeLink(youtubeURL: String) {
+    private fun openYoutubeLink(youtubeURL: String) {
         val intentApp = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeURL))
         val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeURL))
         try {
