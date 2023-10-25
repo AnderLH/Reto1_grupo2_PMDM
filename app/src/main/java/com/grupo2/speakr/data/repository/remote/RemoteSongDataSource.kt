@@ -8,4 +8,7 @@ class RemoteSongDataSource: BaseDataSource(), CommonSongRepository {
     override suspend fun getSongs() = getResult {
         RetrofitClient.apiInterface.getSongs()
     }
+    override suspend fun getFavouriteSongs(id: Int) = getResult {
+        RetrofitClient.apiInterface.getFavouriteSongs(id)
+    }
 }

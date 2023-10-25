@@ -28,6 +28,7 @@
         <activity
             android:name=".ui.users.login.LoginActivity"
             android:exported="false" />
+        <activity android:name=".ui.songs.favourite.FavouriteListActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
