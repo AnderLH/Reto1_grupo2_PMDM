@@ -24,7 +24,7 @@ class RegisterViewModel(
             _created.value =  createNewUser(user)
         }
     }
-    suspend fun createNewUser(user: User): Resource<Int> {
+    private suspend fun createNewUser(user: User): Resource<Int> {
         return withContext(Dispatchers.IO) {
             userRepository.createUser(user)
         }

@@ -1,5 +1,6 @@
 package com.grupo2.speakr.data.repository.remote
 
+import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.User
 import retrofit2.Response
@@ -13,4 +14,8 @@ interface APIInterface {
 
     @POST("users")
     suspend fun createUser(@Body user: User) : Response<Int>
+
+    @POST("users/login")
+    suspend fun loginUser(@Body loginuser: LoginUser) : Response<Int>
+
 }
