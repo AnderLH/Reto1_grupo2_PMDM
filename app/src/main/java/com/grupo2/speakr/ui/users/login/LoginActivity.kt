@@ -25,9 +25,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val bundle : Bundle? = intent.extras
-        var broughtEmail : String?
-        var broughtPassword : String?
-        var loginuser : LoginUser
+        val broughtEmail : String?
+        val broughtPassword : String?
+        var loginUserTransferred = LoginUser("", "")
+        var loginUserInput : LoginUser
 
 
         findViewById<Button>(R.id.buttonRegister).setOnClickListener{
@@ -36,37 +37,39 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
+        if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
+            broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
+            broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
+
+            Log.i("infoCheck", broughtEmail.toString())
+            Log.i("infoCheck", broughtPassword.toString())
+
+            findViewById<EditText>(R.id.emailAddres).setText(broughtEmail)
+            findViewById<EditText>(R.id.password).setText(broughtPassword)
+            loginUserTransferred = LoginUser(broughtEmail.toString(), broughtPassword.toString())
+        }
+
         findViewById<Button>(R.id.buttonAccept).setOnClickListener{
+            val email : String = findViewById<EditText>(R.id.emailAddres).text.toString()
+            val password : String = findViewById<EditText>(R.id.password).text.toString()
+            Log.i("CheckLogInUser", email)
+            Log.i("CheckLogInUser", password)
+            loginUserInput = LoginUser( email, password)
+
             if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
-                broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
-                broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
-
-                //Log.i("infoCheck", broughtEmail.toString())
-                //Log.i("infoCheck", broughtPassword.toString())
-
-                findViewById<EditText>(R.id.emailAddres).setText(broughtEmail)
-                findViewById<EditText>(R.id.password).setText(broughtPassword)
-                loginuser = LoginUser( broughtEmail.toString(), broughtPassword.toString())
+                viewModel.loginOfUser(loginUserTransferred)
             }else {
-                val email : String = findViewById<EditText>(R.id.emailAddres).text.toString()
-                val password : String = findViewById<EditText>(R.id.password).text.toString()
-                //Log.i("CheckLogInUser", email)
-                //Log.i("CheckLogInUser", password)
-                loginuser = LoginUser( email, password)
+                viewModel.loginOfUser(loginUserInput)
             }
-            viewModel.loginOfUser(loginuser)
 
             viewModel.loggedUser.observe(this) {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
-                            Log.i("PruebasValorData",it.data.toString())
                             if (it.data != 0) {
                                 val intent = Intent(applicationContext, SongListActivity::class.java)
                                 intent.putExtra("loggedUserID", it.data)
                                 startActivity(intent)
                                 finish()
-                            }else{
-                                Toast.makeText(this, "The Login provided is not valid, please try again", Toast.LENGTH_SHORT).show()
                             }
                         }
                         Resource.Status.ERROR -> {

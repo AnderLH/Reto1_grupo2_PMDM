@@ -24,6 +24,8 @@ class RegisterActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        var registerFilled:Boolean
+
         findViewById<Button>(R.id.registerAcceptButton).setOnClickListener {
            val email :String = findViewById<EditText>(R.id.email).text.toString()
            val name :String = findViewById<EditText>(R.id.name).text.toString()
@@ -31,8 +33,16 @@ class RegisterActivity : ComponentActivity() {
            val password :String = findViewById<EditText>(R.id.firstPassword).text.toString()
            val passwordRepeated :String = findViewById<EditText>(R.id.secondPassword).text.toString()
 
-            if (password == passwordRepeated) {
-                Log.i("PasswordCheck", "passwords are the same")
+            registerFilled = true
+
+            if(email.isBlank() or name.isBlank() or surname.isBlank() or password.isBlank() or passwordRepeated.isBlank()) {
+                registerFilled = false
+                Toast.makeText(this, "The information provided is not valid, make sure to fill everything", Toast.LENGTH_SHORT).show()
+                Log.i("RegisterCheck", "register invalid")
+            }
+
+            if (registerFilled and (password == passwordRepeated)) {
+                Log.i("RegisterCheck", "The Register is valid")
                 val user = User(0,name, surname, email, password)
                 viewModel.registerUser(user)
 
@@ -46,7 +56,7 @@ class RegisterActivity : ComponentActivity() {
                             finish()
                         }
                         Resource.Status.ERROR -> {
-                            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "The login you have provided is invalid,make sure to fill everything", Toast.LENGTH_LONG).show()
                             Log.i("ConnectionCheck", it.message.toString())
                         }
                         Resource.Status.LOADING -> {
@@ -56,7 +66,7 @@ class RegisterActivity : ComponentActivity() {
                 }
 
             }else {
-                Log.i("PasswordCheck", "passwords are NOT the same")
+                Toast.makeText(this, "The information provided invalid, make sure that the passwords match", Toast.LENGTH_SHORT).show()
             }
         }
 
