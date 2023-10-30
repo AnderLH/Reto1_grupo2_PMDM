@@ -8,6 +8,7 @@ import android.widget.Button
 import com.grupo2.speakr.R
 import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.ui.songs.all.SongListActivity
+import com.grupo2.speakr.ui.songs.favourite.FavouriteListActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
             //Habrá que verificar que el Login es correcto antes de dejarle pasar a la lista de canciones
             if (true) {
                 Log.i("recorrido", "1")
-                val intent = Intent(applicationContext, SongListActivity::class.java)
+                val intent = Intent(applicationContext, FavouriteListActivity::class.java)
                 startActivity(intent)
                 finish()
             }else {
