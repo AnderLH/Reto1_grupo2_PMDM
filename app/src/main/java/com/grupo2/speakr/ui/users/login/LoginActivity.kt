@@ -14,6 +14,7 @@ import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
 import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.ui.songs.all.SongListActivity
 import com.grupo2.speakr.utils.Resource
+import com.grupo2.speakr.ui.songs.favourite.FavouriteListActivity
 
 class LoginActivity : AppCompatActivity() {
     private val userRepository = RemoteUserDataSource()
@@ -50,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.buttonAccept).setOnClickListener{
+
             val email : String = findViewById<EditText>(R.id.emailAddres).text.toString()
             val password : String = findViewById<EditText>(R.id.password).text.toString()
             Log.i("CheckLogInUser", email)
@@ -58,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
             if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
                 viewModel.loginOfUser(loginUserTransferred)
+
             }else {
                 viewModel.loginOfUser(loginUserInput)
             }
