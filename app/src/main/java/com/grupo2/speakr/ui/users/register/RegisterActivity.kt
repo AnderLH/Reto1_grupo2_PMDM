@@ -26,6 +26,12 @@ class RegisterActivity : ComponentActivity() {
 
         var registerFilled:Boolean
 
+        findViewById<Button>(R.id.returnButton).setOnClickListener {
+            val intent = Intent(applicationContext, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         findViewById<Button>(R.id.registerAcceptButton).setOnClickListener {
            val email :String = findViewById<EditText>(R.id.email).text.toString()
            val name :String = findViewById<EditText>(R.id.name).text.toString()
