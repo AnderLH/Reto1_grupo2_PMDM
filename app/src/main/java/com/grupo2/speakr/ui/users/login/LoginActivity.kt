@@ -16,7 +16,8 @@ import com.grupo2.speakr.R
 import com.grupo2.speakr.Speaker
 import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
-import com.grupo2.speakr.ui.songs.all.SongListActivity
+import com.grupo2.speakr.ui.songs.SongActivity
+import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.utils.Resource
 
