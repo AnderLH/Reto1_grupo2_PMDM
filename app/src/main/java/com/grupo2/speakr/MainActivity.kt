@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         screenSplash.setKeepOnScreenCondition {true}
 
-        val intent = Intent(applicationContext, SongActivity::class.java)
+        val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

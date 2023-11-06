@@ -1,6 +1,6 @@
 package com.grupo2.speakr.ui.songs
 
-import HomeFragment
+import com.grupo2.speakr.ui.songs.all.HomeFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem

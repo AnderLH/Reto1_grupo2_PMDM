@@ -1,3 +1,5 @@
+package com.grupo2.speakr.ui.songs.all
+
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -11,13 +13,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
 import com.grupo2.speakr.databinding.FragmentHomeBinding
-import com.grupo2.speakr.ui.songs.all.SongAdapter
-import com.grupo2.speakr.ui.songs.all.SongViewModel
-import com.grupo2.speakr.ui.songs.all.SongsViewModelFactory
 import com.grupo2.speakr.utils.Resource
 
 
@@ -30,7 +28,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -48,7 +46,6 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
                 Resource.Status.LOADING -> {
-                    // de momento
                 }
             }
         })
@@ -56,11 +53,9 @@ class HomeFragment : Fragment() {
         val searchEditText = binding.searchSong
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                // No es necesario implementar esto
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No es necesario implementar esto
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

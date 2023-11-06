@@ -21,7 +21,7 @@ import com.grupo2.speakr.utils.Resource
 
 class FavouriteListActivity : ComponentActivity() {
 
-    private lateinit var songListAdapter: FavouriteListAdapter
+    private lateinit var favouriteListAdapter: FavouriteListAdapter
 
     private val songRepository = RemoteSongDataSource()
 
@@ -35,8 +35,8 @@ class FavouriteListActivity : ComponentActivity() {
         Log.i("recorrido", "2")
 
         // a la lista de empleados le incluyo el adapter de empleado
-        songListAdapter = FavouriteListAdapter(::onSongsListClickItem)
-        binding.songsList.adapter = songListAdapter
+        favouriteListAdapter = FavouriteListAdapter(::onSongsListClickItem)
+        binding.songsList.adapter = favouriteListAdapter
 
         viewModel.items.observe(this, Observer {
             // esto es lo que se ejecuta cada vez que la lista en el VM cambia de valor
@@ -45,7 +45,7 @@ class FavouriteListActivity : ComponentActivity() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     if (it.data != null) {
-                        songListAdapter.submitList(it.data)
+                        favouriteListAdapter.submitList(it.data)
                     }
                 }
                 Resource.Status.ERROR -> {

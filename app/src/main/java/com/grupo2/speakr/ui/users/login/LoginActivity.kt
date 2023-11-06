@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import com.grupo2.speakr.R
 import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
+import com.grupo2.speakr.ui.songs.SongActivity
 import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.ui.songs.all.SongListActivity
 import com.grupo2.speakr.utils.Resource
@@ -69,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
                             if (it.data != 0) {
-                                val intent = Intent(applicationContext, SongListActivity::class.java)
+                                val intent = Intent(applicationContext, SongActivity::class.java)
                                 intent.putExtra("loggedUserID", it.data)
                                 startActivity(intent)
                                 finish()
