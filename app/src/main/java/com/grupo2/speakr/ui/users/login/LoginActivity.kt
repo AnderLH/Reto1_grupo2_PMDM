@@ -60,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
         if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
             broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
             broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
@@ -87,6 +86,8 @@ class LoginActivity : AppCompatActivity() {
 //                saveUserEmail(loginUser.email)
 //                saveUserPassword(loginUser.password)
                 saveBooleanValue("checkbox_checked", true)
+            }else {
+                saveBooleanValue("checkbox_checked", false)
             }
 
             viewModel.loggedUser.observe(this) {

@@ -3,6 +3,7 @@ package com.grupo2.speakr.data.repository.remote
 import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.User
+import com.grupo2.speakr.data.repository.AuthenticationResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,7 +18,7 @@ interface APIInterface {
     suspend fun createUser(@Body user: User) : Response<Int>
 
     @POST("users/login")
-    suspend fun loginUser(@Body loginuser: LoginUser) : Response<Int>
+    suspend fun loginUser(@Body loginuser: LoginUser) : Response<AuthenticationResponse>
 
     @GET("songs/{id}/favourites")
     suspend fun getFavouriteSongs(@Path("id") id : Int): Response<List<Song>>
