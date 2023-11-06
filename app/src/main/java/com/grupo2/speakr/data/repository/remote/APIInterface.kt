@@ -14,11 +14,11 @@ interface APIInterface {
     @GET("songs")
     suspend fun getSongs(): Response<List<Song>>
   
-    @POST("users")
+    @POST("users/auth/signup")
     suspend fun createUser(@Body user: User) : Response<Int>
 
-    @POST("users/login")
-    suspend fun loginUser(@Body loginuser: LoginUser) : Response<AuthenticationResponse>
+    @POST("users/auth/login")
+    suspend fun loginUser(@Body user: LoginUser) : Response<AuthenticationResponse>
 
     @GET("songs/{id}/favourites")
     suspend fun getFavouriteSongs(@Path("id") id : Int): Response<List<Song>>
