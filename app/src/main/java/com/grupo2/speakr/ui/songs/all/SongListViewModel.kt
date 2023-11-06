@@ -40,7 +40,9 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
         // Realiza el filtrado basado en la consulta
         if (query.isNotBlank()) {
             currentSongs.retainAll { song ->
-                song.title.contains(query, ignoreCase = true)
+                val titleMatches = song.title.contains(query, ignoreCase = true)
+                val authorMatches = song.author.contains(query, ignoreCase = true)
+                titleMatches || authorMatches
             }
         }
         Log.d("LISTA", currentSongs.size.toString())
