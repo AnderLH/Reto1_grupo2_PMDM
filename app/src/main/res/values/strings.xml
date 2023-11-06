@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Speakr</string>
+    <string name="nav_open">Open Navigator Drawer</string>
+    <string name="nav_close">Close Navigator Drawer</string>
+
+
     <string name="emailString">EMAIL</string>
     <string name="passString">PASSWORD</string>
     <string name="repeatPassString">REPEAT PASSWORD</string>
@@ -10,4 +14,6 @@
     <string name="surnameString">SURNAME</string>
     <string name="login">Log in</string>
     <string name="favorite">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.grupo2.speakr.ui.songs.SongActivity
 import com.grupo2.speakr.ui.songs.all.SongListActivity
 import com.grupo2.speakr.ui.users.login.LoginActivity
 
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         screenSplash.setKeepOnScreenCondition {true}
 
-        val intent = Intent(applicationContext, LoginActivity::class.java)
+        val intent = Intent(applicationContext, SongActivity::class.java)
         startActivity(intent)
         finish()
     }
