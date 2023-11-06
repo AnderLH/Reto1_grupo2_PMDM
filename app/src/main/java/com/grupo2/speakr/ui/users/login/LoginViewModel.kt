@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.User
+import com.grupo2.speakr.data.repository.AuthenticationResponse
 import com.grupo2.speakr.data.repository.CommonUserRepository
 import com.grupo2.speakr.utils.Resource
 import kotlinx.coroutines.Dispatchers
@@ -18,15 +19,15 @@ class LoginViewModel(
     private val userRepository: CommonUserRepository
 ) : ViewModel() {
 
-    private val _loggedUser = MutableLiveData<Resource<Int>>()
-    val loggedUser : LiveData<Resource<Int>> get() = _loggedUser
+    private val _loggedUser = MutableLiveData<Resource<AuthenticationResponse>>()
+    val loggedUser : LiveData<Resource<AuthenticationResponse>> get() = _loggedUser
 
     fun loginOfUser(user: LoginUser) {
         viewModelScope.launch {
             _loggedUser.value =  loggedUser(user)
         }
     }
-    private suspend fun loggedUser(user: LoginUser): Resource<Int> {
+    private suspend fun loggedUser(user: LoginUser): Resource<AuthenticationResponse> {
         return withContext(Dispatchers.IO) {
             userRepository.loginUser(user)
         }

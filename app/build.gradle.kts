@@ -4,6 +4,7 @@ plugins {
     // ADD para poder pasar objetos entre actividades tienen que ser parcelables
     // haremos las clases con los datos parcelables
     id("org.jetbrains.kotlin.plugin.parcelize")
+    id("kotlin-kapt")
 }
 
 android {
