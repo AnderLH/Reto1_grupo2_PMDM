@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.users.login
 
+import DataManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -25,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: LoginViewModel by viewModels { LoginViewModelFactory(
         userRepository
     ) }
+    val dataManager = DataManager(this) // Initialize the DataManager with your context
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -34,11 +36,11 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
 
+        dataManager.open()
         val bundle : Bundle? = intent.extras
         val broughtEmail : String?
         val broughtPassword : String?
-        var loginUser : LoginUser
-
+        var loginUser : LoginUser? =  dataManager.getLastLog()
         val userEmail = getUserEmail()
         val userPassword = getUserPassword()
         val isCheckBoxChecked = getBooleanValue("checkbox_checked", false)
@@ -77,11 +79,12 @@ class LoginActivity : AppCompatActivity() {
             Log.i("CheckLogInUser", password)
             loginUser = LoginUser( email, password)
 
-            viewModel.loginOfUser(loginUser)
+            viewModel.loginOfUser(loginUser!!)
 
             if(findViewById<CheckBox>(R.id.checkBox).isChecked) {
-                saveUserEmail(loginUser.email)
-                saveUserPassword(loginUser.password)
+                dataManager.insertLog(loginUser!!.email, loginUser!!.password)
+//                saveUserEmail(loginUser.email)
+//                saveUserPassword(loginUser.password)
                 saveBooleanValue("checkbox_checked", true)
             }
 
