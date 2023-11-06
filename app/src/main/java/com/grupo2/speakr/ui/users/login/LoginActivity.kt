@@ -18,7 +18,6 @@ import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
 import com.grupo2.speakr.ui.songs.SongActivity
 import com.grupo2.speakr.ui.users.register.RegisterActivity
-import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.utils.Resource
 
 private const val PREFS_FILENAME = "LoginPrefs"
@@ -42,9 +41,7 @@ class LoginActivity : AppCompatActivity() {
         val bundle : Bundle? = intent.extras
         val broughtEmail : String?
         val broughtPassword : String?
-        var loginUser : LoginUser? =  dataManager.getLastLog()
-        val userEmail = getUserEmail()
-        val userPassword = getUserPassword()
+        var loginUser : LoginUser
         val isCheckBoxChecked = getBooleanValue("checkbox_checked", false)
 
         findViewById<Button>(R.id.buttonRegister).setOnClickListener{
@@ -54,11 +51,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         if (isCheckBoxChecked) {
-            if(userEmail.isEmpty() or userPassword.isEmpty()) {
-                findViewById<EditText>(R.id.emailAddres).setText(userEmail)
-                findViewById<EditText>(R.id.password).setText(userPassword)
                 findViewById<CheckBox>(R.id.checkBox).isChecked = true
-            }
         }
 
         if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
@@ -84,8 +77,6 @@ class LoginActivity : AppCompatActivity() {
 
             if(findViewById<CheckBox>(R.id.checkBox).isChecked) {
                 dataManager.insertLog(loginUser!!.email, loginUser!!.password)
-//                saveUserEmail(loginUser.email)
-//                saveUserPassword(loginUser.password)
                 saveBooleanValue("checkbox_checked", true)
             }else {
                 saveBooleanValue("checkbox_checked", false)
@@ -97,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                             it.data?.let { data ->
                                 Speaker.userPreferences.saveAuthToken(data.accessToken)
 
-                                val intent = Intent(applicationContext, SongListActivity::class.java)
+                                val intent = Intent(applicationContext, SongActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
