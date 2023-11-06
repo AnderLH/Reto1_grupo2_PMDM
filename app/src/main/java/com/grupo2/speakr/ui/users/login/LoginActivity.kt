@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.grupo2.speakr.R
+import com.grupo2.speakr.Speaker
 import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
 import com.grupo2.speakr.ui.songs.all.SongListActivity
@@ -91,9 +92,10 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loggedUser.observe(this) {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
-                            if (it.data != 0) {
+                            it.data?.let { data ->
+                                Speaker.userPreferences.saveAuthToken(data.accessToken)
+
                                 val intent = Intent(applicationContext, SongListActivity::class.java)
-                                intent.putExtra("loggedUserID", it.data)
                                 startActivity(intent)
                                 finish()
                             }
