@@ -6,4 +6,5 @@ import com.grupo2.speakr.utils.Resource
 interface CommonSongRepository {
     suspend fun getSongs() : Resource<List<Song>>
     suspend fun getFavouriteSongs(id: Int): Resource<List<Song>>
+    suspend fun getFavouriteSongsFromUser(): Resource<List<Song>>
 }

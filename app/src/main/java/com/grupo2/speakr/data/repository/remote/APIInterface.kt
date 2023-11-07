@@ -20,6 +20,9 @@ interface APIInterface {
     @POST("users/auth/login")
     suspend fun loginUser(@Body user: LoginUser) : Response<AuthenticationResponse>
 
-    @GET("songs/{id}/favourites")
+    @GET("users/{id}/favourites")
     suspend fun getFavouriteSongs(@Path("id") id : Int): Response<List<Song>>
+
+    @GET("users/favourites/me")
+    suspend fun getFavouriteSongsForUser(): Response<List<Song>>
 }

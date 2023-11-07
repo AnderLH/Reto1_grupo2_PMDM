@@ -56,8 +56,8 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
             var id : Int = 3
-            Log.i("info", songRepository.getFavouriteSongs(id).toString())
-            songRepository.getFavouriteSongs(id)
+            Log.i("info", songRepository.getFavouriteSongsFromUser().toString())
+            songRepository.getFavouriteSongsFromUser()
 
 
         }
