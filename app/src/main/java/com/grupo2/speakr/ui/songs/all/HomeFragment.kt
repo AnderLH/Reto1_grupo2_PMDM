@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        songListAdapter = SongAdapter(::onSongsListClickItem)
+        songListAdapter = SongAdapter(::onSongsListClickItem, ::onImageButtonClick)
         binding.songsList.adapter = songListAdapter
 
         viewModel.items.observe(viewLifecycleOwner, Observer {
@@ -79,5 +80,13 @@ class HomeFragment : Fragment() {
         } catch (ex: ActivityNotFoundException) {
             requireContext().startActivity(intentBrowser)
         }
+    }
+
+    fun onImageButtonClick(song: Song) {
+        // Handle the click event of the ImageButton here
+        Log.i("Image", song.id.toString())
+
+        // You can access the details of the `song` and perform the desired action.
+        // For example, you can change the state of the ImageButton to yellow.
     }
 }

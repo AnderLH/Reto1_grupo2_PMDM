@@ -25,4 +25,5 @@ interface APIInterface {
 
     @GET("users/favourites/me")
     suspend fun getFavouriteSongsForUser(): Response<List<Song>>
+
 }

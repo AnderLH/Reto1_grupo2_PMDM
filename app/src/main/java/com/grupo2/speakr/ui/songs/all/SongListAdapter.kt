@@ -13,7 +13,8 @@ import com.grupo2.speakr.R
 import java.util.regex.Pattern
 
 class SongAdapter(
-    private val onClickListener: (Song) -> Unit
+    private val onClickListener: (Song) -> Unit,
+    private val onImageButtonClick: (Song) -> Unit // Define a new click listener for the ImageButton
 ) : ListAdapter<Song, SongAdapter.SongViewHolder>(SongDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -43,6 +44,10 @@ class SongAdapter(
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.songImage)
+
+            binding.itemButton.setOnClickListener {
+                onImageButtonClick(song) // Call the provided function
+            }
         }
     }
 

@@ -33,7 +33,7 @@
             Log.i("recorrido", "2")
 
             // a la lista de empleados le incluyo el adapter de empleado
-            songListAdapter = SongAdapter(::onSongsListClickItem)
+//            songListAdapter = SongAdapter(::onSongsListClickItem)
             binding.songsList.adapter = songListAdapter
 
             viewModel.items.observe(this, Observer {
