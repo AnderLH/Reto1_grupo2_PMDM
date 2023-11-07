@@ -82,11 +82,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun onImageButtonClick(song: Song) {
+    private fun onImageButtonClick(song: Song) {
         // Handle the click event of the ImageButton here
         Log.i("Image", song.id.toString())
-
+        
         // You can access the details of the `song` and perform the desired action.
         // For example, you can change the state of the ImageButton to yellow.
     }
+
 }

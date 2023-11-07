@@ -19,6 +19,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
     private val _items = MutableLiveData<Resource<List<Song>>>()
     private var originalSongs: List<Song> = emptyList()
 
+
     val items: LiveData<Resource<List<Song>>>
         get() = _items
 
@@ -58,6 +59,12 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
         return withContext(Dispatchers.IO) {
             songRepository.getSongs()
         }
+    }
+    private suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
+        return withContext(Dispatchers.IO){
+            songRepository.createFavouriteForUser(idSong)
+        }
+
     }
 }
 

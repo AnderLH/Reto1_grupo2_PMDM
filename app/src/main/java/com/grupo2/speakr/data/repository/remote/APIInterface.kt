@@ -26,4 +26,7 @@ interface APIInterface {
     @GET("users/favourites/me")
     suspend fun getFavouriteSongsForUser(): Response<List<Song>>
 
+    @POST("users/favourites/create/{id}")
+    suspend fun createFavouriteForUser(@Path("id") songId : Int) : Response<Int>
+
 }
