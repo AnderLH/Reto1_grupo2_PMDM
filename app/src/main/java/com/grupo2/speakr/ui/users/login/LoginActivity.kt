@@ -18,7 +18,6 @@ import com.grupo2.speakr.data.LoginUser
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
 import com.grupo2.speakr.ui.songs.SongActivity
 import com.grupo2.speakr.ui.users.register.RegisterActivity
-import com.grupo2.speakr.ui.users.register.RegisterActivity
 import com.grupo2.speakr.utils.Resource
 
 private const val PREFS_FILENAME = "LoginPrefs"
@@ -97,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                             it.data?.let { data ->
                                 Speaker.userPreferences.saveAuthToken(data.accessToken)
 
-                                val intent = Intent(applicationContext, SongListActivity::class.java)
+                                val intent = Intent(applicationContext, SongActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             }
