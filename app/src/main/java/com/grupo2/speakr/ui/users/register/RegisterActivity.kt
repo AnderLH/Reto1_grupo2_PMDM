@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.users.register
 
+import DataManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,11 +21,16 @@ class RegisterActivity : ComponentActivity() {
     private val viewModel: RegisterViewModel by viewModels { RegisterViewModelFactory(
         userRepository
     ) }
+
+    val dataManager = DataManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        dataManager.open()
+
         var registerFilled:Boolean
+
 
         findViewById<Button>(R.id.returnButton).setOnClickListener {
             val intent = Intent(applicationContext, RegisterActivity::class.java)
@@ -56,6 +62,9 @@ class RegisterActivity : ComponentActivity() {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
                             Log.i("ConnectionCheck", it.message.toString())
+
+                            dataManager.insertLog(user.email.toString(), user.password.toString())
+
                             val intent = Intent(applicationContext, LoginActivity::class.java)
                             intent.putExtra("loginInfo", arrayOf(email,password))
                             startActivity(intent)

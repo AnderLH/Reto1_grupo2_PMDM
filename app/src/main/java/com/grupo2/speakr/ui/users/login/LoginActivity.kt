@@ -38,25 +38,36 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
 
         dataManager.open()
-        val bundle : Bundle? = intent.extras
-        val broughtEmail : String?
-        val broughtPassword : String?
-        var loginUser : LoginUser
+        val bundle: Bundle? = intent.extras
         val isCheckBoxChecked = getBooleanValue("checkbox_checked", false)
+        val checkBox = findViewById<CheckBox>(R.id.checkBox)
 
-        findViewById<Button>(R.id.buttonRegister).setOnClickListener{
+        // Set the state of the checkbox accordingly
+        checkBox.isChecked = isCheckBoxChecked
+        Log.i("checkbox" , checkBox.isChecked.toString())
+
+        if (isCheckBoxChecked) {
+            val rememberUser: LoginUser? = dataManager.getLastLog()
+            if (rememberUser != null) {
+                // Populate email and password fields from the remembered user's data
+                findViewById<EditText>(R.id.emailAddres).setText(rememberUser.email.toString())
+                findViewById<EditText>(R.id.password).setText(rememberUser.password.toString())
+            }
+        } else {
+            // If the checkbox is not checked, clear the email and password fields
+            findViewById<EditText>(R.id.emailAddres).text.clear()
+            findViewById<EditText>(R.id.password).text.clear()
+        }
+
+        findViewById<Button>(R.id.buttonRegister).setOnClickListener {
             val intent = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        if (isCheckBoxChecked) {
-                findViewById<CheckBox>(R.id.checkBox).isChecked = true
-        }
-
         if (!bundle?.getStringArray("loginInfo").isNullOrEmpty()) {
-            broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
-            broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
+            val broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
+            val broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
 
             Log.i("infoCheck", broughtEmail.toString())
             Log.i("infoCheck", broughtPassword.toString())
@@ -65,44 +76,47 @@ class LoginActivity : AppCompatActivity() {
             findViewById<EditText>(R.id.password).setText(broughtPassword)
         }
 
-        findViewById<Button>(R.id.buttonAccept).setOnClickListener{
-
-            val email : String = findViewById<EditText>(R.id.emailAddres).text.toString()
-            val password : String = findViewById<EditText>(R.id.password).text.toString()
+        findViewById<Button>(R.id.buttonAccept).setOnClickListener {
+            val email: String = findViewById<EditText>(R.id.emailAddres).text.toString()
+            val password: String = findViewById<EditText>(R.id.password).text.toString()
             Log.i("CheckLogInUser", email)
             Log.i("CheckLogInUser", password)
-            loginUser = LoginUser( email, password)
 
-            viewModel.loginOfUser(loginUser!!)
+            // Create a LoginUser object with the email and password
+            val loginUser = LoginUser(email, password)
 
-            if(findViewById<CheckBox>(R.id.checkBox).isChecked) {
-                dataManager.insertLog(loginUser!!.email, loginUser!!.password)
-                saveBooleanValue("checkbox_checked", true)
-            }else {
-                saveBooleanValue("checkbox_checked", false)
-            }
+            // Attempt to log in the user using the viewModel
+            viewModel.loginOfUser(loginUser)
 
-            viewModel.loggedUser.observe(this) {
-                    when (it.status) {
-                        Resource.Status.SUCCESS -> {
-                            it.data?.let { data ->
-                                Speaker.userPreferences.saveAuthToken(data.accessToken)
+            // Observe the result of the login attempt
+            viewModel.loggedUser.observe(this) { result ->
+                when (result.status) {
+                    Resource.Status.SUCCESS -> {
+                        // Handle successful login
+                        result.data?.let { data ->
+                            Speaker.userPreferences.saveAuthToken(data.accessToken)
 
-                                val intent = Intent(applicationContext, SongActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                        }
-                        Resource.Status.ERROR -> {
-                            Toast.makeText(this, "The Login provided is not valid, please try again", Toast.LENGTH_SHORT).show()
-                            Log.i("ConnectionCheck", it.message.toString())
-                        }
-                        Resource.Status.LOADING -> {
-                            // for the moment
+
+                            saveBooleanValue("checkbox_checked", checkBox.isChecked)
+                            dataManager.close()
+                            val intent = Intent(applicationContext, SongActivity::class.java)
+                            startActivity(intent)
+                            finish()
                         }
                     }
+                    Resource.Status.ERROR -> {
+                        // Handle login error
+                        Toast.makeText(this, "The login provided is not valid, please try again", Toast.LENGTH_SHORT).show()
+                        Log.i("ConnectionCheck", result.message.orEmpty())
+                    }
+                    Resource.Status.LOADING -> {
+                        // Handle loading state (optional)
+                        // You can show a loading indicator or perform other actions while waiting
+                    }
+                }
             }
         }
+        dataManager.close()
 
     }
 
@@ -135,7 +149,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Retrieve the checkbox status
-    fun getBooleanValue(key: String, defaultValue: Boolean): Boolean {
+    private fun getBooleanValue(key: String, defaultValue: Boolean): Boolean {
         return sharedPreferences.getBoolean(key, defaultValue)
     }
 }
