@@ -1,6 +1,7 @@
 package com.grupo2.speakr.ui.songs.all
 
 import android.util.Log
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,15 +17,42 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SongViewModel(private val songRepository: CommonSongRepository) : ViewModel() {
-    private val _items = MutableLiveData<Resource<List<Song>>>()
+
+    private val _items = MutableLiveData<Resource<List<Song>>?>()
+
     private var originalSongs: List<Song> = emptyList()
 
+    private val _delete = MutableLiveData<Resource<Int>?>()
 
-    val items: LiveData<Resource<List<Song>>>
-        get() = _items
+    private val _create = MutableLiveData<Resource<Int>?>()
+
+    private val _favs = MutableLiveData<Resource<List<Song>>?>()
+
+    val favs: MutableLiveData<Resource<List<Song>>?> get() = _favs
+
+    val delete : MutableLiveData<Resource<Int>?> get() = _delete
+
+    val create : MutableLiveData<Resource<Int>?> get() = _create
+
+    val items: MutableLiveData<Resource<List<Song>>?> get() = _items
 
     init {
         updateSongList()
+        getFavs()
+
+    }
+
+    private fun compareFavs() {
+        if (_items.value != null && _favs.value != null) {
+            for(fav : Song in _favs.value!!.data!!) {
+                for (song: Song in _items.value!!.data!!) {
+                    if (fav.id == song.id) {
+                        song.favorite = true
+                    }
+                    Log.i("favs", song.favorite.toString())
+                }
+            }
+        }
     }
 
     private fun updateSongList() {
@@ -32,6 +60,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             val repoResponse = getSongsFromRepository()
             _items.value = repoResponse
             originalSongs = repoResponse?.data.orEmpty() // Guarda la lista original
+            compareFavs()
         }
     }
 
@@ -54,17 +83,64 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
         _items.value = Resource.success(currentSongs)
     }
 
+    fun toggleFavourite(song: Song){
+        if(song.favorite){
+            deleteFav(song.id)
+            song.favorite = false
+        }else{
+            createFav(song.id)
+            song.favorite = true
+        }
+    }
+    fun createFav(idSong: Int) {
+        val id : Int = idSong
+        viewModelScope.launch {
+            _create.value = createFavouriteSong(id)
+        }
+    }
+
+    fun deleteFav(idSong: Int) {
+        val id : Int = idSong
+        viewModelScope.launch {
+            _delete.value = deleteFavouriteSong(id)
+        }
+    }
+
+    fun getFavs() {
+        viewModelScope.launch {
+            val repoResponse = getFavourites()
+            _favs.value = repoResponse
+            compareFavs()
+        }
+    }
+
+    private suspend fun getFavourites(): Resource<List<Song>>? {
+        return withContext(Dispatchers.IO) {
+
+            Log.i("info", songRepository.getFavouriteSongsFromUser().toString())
+            songRepository.getFavouriteSongsFromUser()
+
+
+        }
+    }
 
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
             songRepository.getSongs()
         }
     }
-    private suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
+
+
+    suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
         return withContext(Dispatchers.IO){
             songRepository.createFavouriteForUser(idSong)
         }
+    }
 
+    suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
+        return withContext(Dispatchers.IO){
+            songRepository.deleteFavouriteForUser(idSong)
+        }
     }
 }
 

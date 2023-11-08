@@ -40,17 +40,21 @@
                 // esto es lo que se ejecuta cada vez que la lista en el VM cambia de valor
                 Log.e("PruebasDia1", "ha ocurrido un cambio en la lista")
 
-                when (it.status) {
-                    Resource.Status.SUCCESS -> {
-                        if (it.data != null) {
-                            songListAdapter.submitList(it.data)
+                if (it != null) {
+                    when (it.status) {
+                        Resource.Status.SUCCESS -> {
+                            if (it.data != null) {
+                                songListAdapter.submitList(it.data)
+                            }
                         }
-                    }
-                    Resource.Status.ERROR -> {
-                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                    }
-                    Resource.Status.LOADING -> {
-                        // de momento
+
+                        Resource.Status.ERROR -> {
+                            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        }
+
+                        Resource.Status.LOADING -> {
+                            // de momento
+                        }
                     }
                 }
 

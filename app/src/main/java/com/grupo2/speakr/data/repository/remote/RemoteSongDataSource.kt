@@ -18,4 +18,8 @@ class RemoteSongDataSource: BaseDataSource(), CommonSongRepository {
     override suspend fun createFavouriteForUser(idSong : Int) = getResult {
         RetrofitClient.apiInterface.createFavouriteForUser(idSong)
     }
+
+    override suspend fun deleteFavouriteForUser(idSong : Int) = getResult {
+        RetrofitClient.apiInterface.deleteFavoutiteForUser(idSong)
+    }
 }

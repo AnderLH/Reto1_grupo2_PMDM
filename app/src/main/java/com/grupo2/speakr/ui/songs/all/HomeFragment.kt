@@ -37,16 +37,20 @@ class HomeFragment : Fragment() {
         binding.songsList.adapter = songListAdapter
 
         viewModel.items.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    if (it.data != null) {
-                        songListAdapter.submitList(it.data)
+            if (it != null) {
+                when (it.status) {
+                    Resource.Status.SUCCESS -> {
+                        if (it.data != null) {
+                            songListAdapter.submitList(it.data)
+                        }
                     }
-                }
-                Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
-                Resource.Status.LOADING -> {
+
+                    Resource.Status.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    Resource.Status.LOADING -> {
+                    }
                 }
             }
         })
@@ -84,7 +88,10 @@ class HomeFragment : Fragment() {
 
     private fun onImageButtonClick(song: Song) {
         // Handle the click event of the ImageButton here
-        Log.i("Image", song.id.toString())
+        Log.i("Image", song.favorite.toString())
+        val id : Int = song.id
+        viewModel.toggleFavourite(song)
+        //viewModel.createFav(id)
         
         // You can access the details of the `song` and perform the desired action.
         // For example, you can change the state of the ImageButton to yellow.
