@@ -4,10 +4,10 @@
     <item
         android:id="@+id/bottom_home"
         android:title="Home"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/home"/>
     <item
         android:id="@+id/bottom_favorite"
         android:title="Favorite"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/favorite"/>
 
 </menu>
