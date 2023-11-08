@@ -89,10 +89,8 @@ class HomeFragment : Fragment() {
     private fun onImageButtonClick(song: Song) {
         // Handle the click event of the ImageButton here
         Log.i("Image", song.favorite.toString())
-        val id : Int = song.id
-        viewModel.toggleFavourite(song)
-        //viewModel.createFav(id)
-        
+        val id: Int = song.id
+        viewModel.toggleFavourite(song, requireContext())
         // You can access the details of the `song` and perform the desired action.
         // For example, you can change the state of the ImageButton to yellow.
     }

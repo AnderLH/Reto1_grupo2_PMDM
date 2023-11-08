@@ -91,7 +91,8 @@ class FavouriteFragment : Fragment() {
         // Handle the click event of the ImageButton here
         Log.i("Image", song.favorite.toString())
         val id : Int = song.id
-        viewModel.deleteFav(song.id)
+        viewModel.deleteFav(song, requireContext())
+
         //viewModel.createFav(id)
 
         // You can access the details of the `song` and perform the desired action.

@@ -45,6 +45,7 @@ class FavouriteListAdapter(
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.songImage)
+                binding.itemButton.setImageResource(R.drawable.song_favorite)
 
             binding.itemButton.setOnClickListener {
                 onImageButtonClick(song) // Call the provided function

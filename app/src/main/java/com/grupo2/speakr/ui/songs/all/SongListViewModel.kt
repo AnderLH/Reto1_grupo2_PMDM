@@ -1,8 +1,8 @@
 package com.grupo2.speakr.ui.songs.all
 
+import android.content.Context
 import android.util.Log
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.lifecycle.LiveData
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -82,14 +82,19 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
         _items.value = Resource.success(currentSongs)
     }
 
-    fun toggleFavourite(song: Song){
-        if(song.favorite){
+    fun toggleFavourite(song: Song, context: Context) {
+        val toastMessage = if (song.favorite) {
             deleteFav(song.id)
             song.favorite = false
-        }else{
+            "${song.title}, Removed from favorites"
+        } else {
             createFav(song.id)
             song.favorite = true
+            "${song.title}, Added to favorites"
         }
+
+        // Show a Toast message
+        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
     }
     private fun createFav(idSong: Int) {
         val id : Int = idSong

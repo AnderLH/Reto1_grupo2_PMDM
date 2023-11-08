@@ -1,6 +1,8 @@
 package com.grupo2.speakr.ui.songs.favourite
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -55,13 +57,19 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
         _items.value = Resource.success(currentSongs)
     }
 
-     fun deleteFav(idSong: Int) {
-        val id : Int = idSong
+    fun deleteFav(song: Song, context: Context) {
+        val id: Int = song.id
+         // You need to implement this function to get the song's title
         viewModelScope.launch {
             _delete.value = deleteFavouriteSong(id)
             Log.i("delete", "ok")
         }
-         updateSongList()
+
+        // Show a Toast message indicating the deletion
+        val toastMessage = "${song?.title}, Deleted from favorites"
+        Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+
+        updateSongList()
     }
 
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
