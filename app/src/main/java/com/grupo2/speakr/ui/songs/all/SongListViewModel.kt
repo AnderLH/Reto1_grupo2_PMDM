@@ -54,7 +54,6 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             }
         }
     }
-
     private fun updateSongList() {
         viewModelScope.launch {
             val repoResponse = getSongsFromRepository()
@@ -92,21 +91,21 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             song.favorite = true
         }
     }
-    fun createFav(idSong: Int) {
+    private fun createFav(idSong: Int) {
         val id : Int = idSong
         viewModelScope.launch {
             _create.value = createFavouriteSong(id)
         }
     }
 
-    fun deleteFav(idSong: Int) {
+    private fun deleteFav(idSong: Int) {
         val id : Int = idSong
         viewModelScope.launch {
             _delete.value = deleteFavouriteSong(id)
         }
     }
 
-    fun getFavs() {
+    private fun getFavs() {
         viewModelScope.launch {
             val repoResponse = getFavourites()
             _favs.value = repoResponse
@@ -131,13 +130,13 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
     }
 
 
-    suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
+    private suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
         return withContext(Dispatchers.IO){
             songRepository.createFavouriteForUser(idSong)
         }
     }
 
-    suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
+    private suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
         return withContext(Dispatchers.IO){
             songRepository.deleteFavouriteForUser(idSong)
         }
