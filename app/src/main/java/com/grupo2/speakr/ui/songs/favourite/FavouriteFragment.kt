@@ -15,8 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
-import com.grupo2.speakr.databinding.FragmentFavouriteBinding
-import com.grupo2.speakr.databinding.FragmentHomeBinding
+import com.grupo2.speakr.databinding.FragmentSongsListBinding
 import com.grupo2.speakr.utils.Resource
 
 class FavouriteFragment : Fragment() {
@@ -29,7 +28,7 @@ class FavouriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFavouriteBinding.inflate(inflater, container, false)
+        val binding = FragmentSongsListBinding.inflate(inflater, container, false)
         val view = binding.root
 
         favouriteListAdapter = FavouriteListAdapter(::onSongsListClickItem)

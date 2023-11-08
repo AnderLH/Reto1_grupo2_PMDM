@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import com.grupo2.speakr.R
 import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
-import androidx.activity.viewModels
 import com.grupo2.speakr.ui.users.login.LoginActivity
 import com.grupo2.speakr.utils.Resource
 
@@ -22,7 +22,7 @@ class RegisterActivity : ComponentActivity() {
         userRepository
     ) }
 
-    val dataManager = DataManager(this)
+    private val dataManager = DataManager(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -63,7 +63,7 @@ class RegisterActivity : ComponentActivity() {
                         Resource.Status.SUCCESS -> {
                             Log.i("ConnectionCheck", it.message.toString())
 
-                            dataManager.insertLog(user.email.toString(), user.password.toString())
+                            dataManager.insertLog(user.email, user.password)
 
                             val intent = Intent(applicationContext, LoginActivity::class.java)
                             intent.putExtra("loginInfo", arrayOf(email,password))

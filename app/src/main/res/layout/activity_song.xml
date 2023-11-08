@@ -32,9 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
             android:layout_marginTop="0dp"
-            android:paddingBottom="80dp">
-
-        </FrameLayout>
+            android:paddingBottom="65dp"/>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -44,11 +42,12 @@
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/bottomAppBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="bottom"
                 android:backgroundTint="@color/colorPrimary"
                 app:fabCradleMargin="10dp"
-                app:fabCradleRoundedCornerRadius="50dp">
+                app:fabCradleRoundedCornerRadius="50dp"
+                tools:ignore="VisualLintBottomAppBar">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_navigation"
@@ -71,6 +70,7 @@
         app:itemIconTint="@color/colorAccent"
         app:itemTextColor="@color/colorAccent"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"/>
+        app:menu="@menu/nav_menu"
+        tools:ignore="VisualLintBounds" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

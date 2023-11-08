@@ -16,7 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
-import com.grupo2.speakr.databinding.FragmentHomeBinding
+import com.grupo2.speakr.databinding.FragmentSongsListBinding
 import com.grupo2.speakr.utils.Resource
 
 
@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentSongsListBinding.inflate(inflater, container, false)
         val view = binding.root
 
         songListAdapter = SongAdapter(::onSongsListClickItem, ::onImageButtonClick)

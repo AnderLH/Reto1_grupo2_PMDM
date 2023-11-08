@@ -34,6 +34,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setSupportActionBar(findViewById(R.id.login_toolbar))
+        title = "Login"
 
         sharedPreferences = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
 
@@ -133,7 +135,7 @@ class LoginActivity : AppCompatActivity() {
         editor.apply()
     }
     // Save if the checkbox has been checked
-    fun saveBooleanValue(key: String, value: Boolean) {
+    private fun saveBooleanValue(key: String, value: Boolean) {
             val editor = sharedPreferences.edit()
             editor.putBoolean(key, value)
             editor.apply()
