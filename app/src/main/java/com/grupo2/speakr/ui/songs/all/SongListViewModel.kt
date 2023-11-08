@@ -84,6 +84,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
     }
 
     fun toggleFavourite(song: Song){
+        Log.i("Funciona", song.favorite.toString())
         if(song.favorite){
             deleteFav(song.id)
             song.favorite = false
@@ -92,21 +93,21 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             song.favorite = true
         }
     }
-    fun createFav(idSong: Int) {
+    private fun createFav(idSong: Int) {
         val id : Int = idSong
         viewModelScope.launch {
             _create.value = createFavouriteSong(id)
         }
     }
 
-    fun deleteFav(idSong: Int) {
+    private fun deleteFav(idSong: Int) {
         val id : Int = idSong
         viewModelScope.launch {
             _delete.value = deleteFavouriteSong(id)
         }
     }
 
-    fun getFavs() {
+    private fun getFavs() {
         viewModelScope.launch {
             val repoResponse = getFavourites()
             _favs.value = repoResponse
@@ -131,7 +132,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
     }
 
 
-    suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
+    private suspend fun createFavouriteSong(idSong : Int): Resource<Int>{
         return withContext(Dispatchers.IO){
             songRepository.createFavouriteForUser(idSong)
         }
