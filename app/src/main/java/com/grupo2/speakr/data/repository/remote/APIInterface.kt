@@ -6,6 +6,7 @@ import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.AuthenticationResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -25,5 +26,11 @@ interface APIInterface {
 
     @GET("users/favourites/me")
     suspend fun getFavouriteSongsForUser(): Response<List<Song>>
+
+    @POST("users/favourites/create/{id}")
+    suspend fun createFavouriteForUser(@Path("id") songId : Int) : Response<Int>
+
+    @DELETE("users/favourites/delete/{id}")
+    suspend fun deleteFavoutiteForUser(@Path("id") songId: Int) : Response<Int>
 
 }
