@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import com.grupo2.speakr.R
 import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
-import androidx.activity.viewModels
 import com.grupo2.speakr.ui.users.login.LoginActivity
 import com.grupo2.speakr.utils.Resource
 

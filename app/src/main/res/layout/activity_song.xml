@@ -44,7 +44,8 @@
                 android:layout_gravity="bottom"
                 android:backgroundTint="@color/colorPrimary"
                 app:fabCradleMargin="10dp"
-                app:fabCradleRoundedCornerRadius="50dp">
+                app:fabCradleRoundedCornerRadius="50dp"
+                tools:ignore="VisualLintBottomAppBar">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_navigation"
@@ -65,6 +66,7 @@
         app:itemIconTint="@color/colorAccent"
         app:itemTextColor="@color/colorAccent"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"/>
+        app:menu="@menu/nav_menu"
+        tools:ignore="VisualLintBounds" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
