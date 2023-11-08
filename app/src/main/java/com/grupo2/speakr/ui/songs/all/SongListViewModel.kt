@@ -54,7 +54,6 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             }
         }
     }
-
     private fun updateSongList() {
         viewModelScope.launch {
             val repoResponse = getSongsFromRepository()
@@ -138,7 +137,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
         }
     }
 
-    suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
+    private suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
         return withContext(Dispatchers.IO){
             songRepository.deleteFavouriteForUser(idSong)
         }

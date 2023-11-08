@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,20 +32,26 @@ class FavouriteFragment : Fragment() {
         val binding = FragmentSongsListBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        favouriteListAdapter = FavouriteListAdapter(::onSongsListClickItem)
+        favouriteListAdapter = FavouriteListAdapter(::onSongsListClickItem, ::onImageButtonClick)
         binding.songsList.adapter = favouriteListAdapter
 
         viewModel.items.observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    if (it.data != null) {
-                        favouriteListAdapter.submitList(it.data)
+            if (it != null) {
+                when (it.status) {
+                    Resource.Status.SUCCESS -> {
+                        if (it != null) {
+                            if (it.data != null) {
+                                favouriteListAdapter.submitList(it.data)
+                            }
+                        }
                     }
-                }
-                Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
-                Resource.Status.LOADING -> {
+
+                    Resource.Status.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    Resource.Status.LOADING -> {
+                    }
                 }
             }
         })
@@ -78,5 +85,16 @@ class FavouriteFragment : Fragment() {
         } catch (ex: ActivityNotFoundException) {
             requireContext().startActivity(intentBrowser)
         }
+    }
+
+    private fun onImageButtonClick(song: Song) {
+        // Handle the click event of the ImageButton here
+        Log.i("Image", song.favorite.toString())
+        val id : Int = song.id
+        viewModel.deleteFav(song.id)
+        //viewModel.createFav(id)
+
+        // You can access the details of the `song` and perform the desired action.
+        // For example, you can change the state of the ImageButton to yellow.
     }
 }

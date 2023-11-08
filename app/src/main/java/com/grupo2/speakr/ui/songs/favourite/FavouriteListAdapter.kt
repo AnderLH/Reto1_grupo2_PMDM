@@ -14,7 +14,8 @@ import com.grupo2.speakr.ui.songs.all.SongAdapter
 import java.util.regex.Pattern
 
 class FavouriteListAdapter(
-        private val onClickListener: (Song) -> Unit
+        private val onClickListener: (Song) -> Unit,
+        private val onImageButtonClick: (Song) -> Unit
     ) : ListAdapter<Song, FavouriteListAdapter.SongViewHolder>(FavouriteDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
@@ -44,7 +45,12 @@ class FavouriteListAdapter(
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.songImage)
+
+            binding.itemButton.setOnClickListener {
+                onImageButtonClick(song) // Call the provided function
+            }
         }
+
     }
 
     class FavouriteDiffCallBack : DiffUtil.ItemCallback<Song>() {
@@ -76,4 +82,6 @@ class FavouriteListAdapter(
             videoUrl
         }
     }
+
+
 }

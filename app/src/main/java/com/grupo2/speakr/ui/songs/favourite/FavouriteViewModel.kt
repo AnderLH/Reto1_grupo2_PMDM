@@ -17,11 +17,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FavouriteViewModel(private val songRepository: CommonSongRepository) : ViewModel() {
-    private val _items = MutableLiveData<Resource<List<Song>>>()
+    private val _items = MutableLiveData<Resource<List<Song>>?>()
     private var originalSongs: List<Song> = emptyList()
 
-    val items: LiveData<Resource<List<Song>>>
-        get() = _items
+    val items: MutableLiveData<Resource<List<Song>>?> get() = _items
+
+    private val _delete = MutableLiveData<Resource<Int>>()
+
+    val delete : MutableLiveData<Resource<Int>> get() = _delete
 
     init {
         updateSongList()
@@ -52,6 +55,14 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
         _items.value = Resource.success(currentSongs)
     }
 
+     fun deleteFav(idSong: Int) {
+        val id : Int = idSong
+        viewModelScope.launch {
+            _delete.value = deleteFavouriteSong(id)
+            Log.i("delete", "ok")
+        }
+         updateSongList()
+    }
 
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
@@ -60,6 +71,12 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
             songRepository.getFavouriteSongsFromUser()
 
 
+        }
+    }
+
+    private suspend fun deleteFavouriteSong(idSong: Int): Resource<Int>{
+        return withContext(Dispatchers.IO){
+            songRepository.deleteFavouriteForUser(idSong)
         }
     }
 }

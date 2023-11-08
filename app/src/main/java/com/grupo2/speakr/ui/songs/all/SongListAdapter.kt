@@ -47,6 +47,14 @@ class SongAdapter(
 
             binding.itemButton.setOnClickListener {
                 onImageButtonClick(song) // Call the provided function
+                if (song.favorite) {
+                    this.binding.itemButton.setImageResource(R.drawable.song_favorite)
+                }else {
+                    this.binding.itemButton.setImageResource(R.drawable.song_favorite_border)
+                }
+            }
+            if (song.favorite) {
+                binding.itemButton.setImageResource(R.drawable.song_favorite)
             }
         }
     }
