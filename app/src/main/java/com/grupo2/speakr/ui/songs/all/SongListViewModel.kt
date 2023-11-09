@@ -92,7 +92,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             song.favorite = true
             "${song.title}, Added to favorites"
         }
-
+        compareFavs()
         // Show a Toast message
         Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
     }

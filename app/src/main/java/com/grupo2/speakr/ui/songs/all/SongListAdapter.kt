@@ -56,6 +56,8 @@ class SongAdapter(
             }
             if (song.favorite) {
                 binding.itemButton.setImageResource(R.drawable.song_favorite)
+            }else {
+                this.binding.itemButton.setImageResource(R.drawable.song_favorite_border)
             }
         }
     }
