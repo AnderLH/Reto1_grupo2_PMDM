@@ -22,4 +22,8 @@ class RemoteSongDataSource: BaseDataSource(), CommonSongRepository {
     override suspend fun deleteFavouriteForUser(idSong : Int) = getResult {
         RetrofitClient.apiInterface.deleteFavoutiteForUser(idSong)
     }
+
+    override suspend fun addViewToSong(idSong: Int) = getResult {
+        RetrofitClient.apiInterface.addViewToSong(idSong)
+    }
 }
