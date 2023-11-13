@@ -10,10 +10,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.grupo2.speakr.R
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.repository.remote.RemoteSongDataSource
 import com.grupo2.speakr.databinding.FragmentSongsListBinding
@@ -32,6 +36,19 @@ class FavouriteFragment : Fragment() {
         val binding = FragmentSongsListBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        val filterTypes = listOf<String>("Titulo", "Autor")
+        val autoComplete: AutoCompleteTextView = binding.autoCompleteTxt
+        val adapter = context?.let { ArrayAdapter(it, R.layout.filter_menu_item, filterTypes) }
+
+        autoComplete.setAdapter(adapter)
+        autoComplete.setOnClickListener{
+            AdapterView.OnItemClickListener{
+                    adapterView, view, i, l ->
+                val selectedItem = adapterView.getItemAtPosition(i)
+                //Toast.makeText(this, "Item: $selectedItem", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         favouriteListAdapter = FavouriteListAdapter(::onSongsListClickItem, ::onImageButtonClick)
         binding.songsList.adapter = favouriteListAdapter
 
@@ -39,10 +56,8 @@ class FavouriteFragment : Fragment() {
             if (it != null) {
                 when (it.status) {
                     Resource.Status.SUCCESS -> {
-                        if (it != null) {
-                            if (it.data != null) {
-                                favouriteListAdapter.submitList(it.data)
-                            }
+                        if (it.data != null) {
+                            favouriteListAdapter.submitList(it.data)
                         }
                     }
 
@@ -66,7 +81,12 @@ class FavouriteFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString()
-                viewModel.filterSongs(query)
+                if(binding.autoCompleteTxt.text.equals("Titulo")) {
+                    viewModel.filterSongsTitle(query)
+                }else {
+                    viewModel.filterSongsAuthor(query)
+                }
+
             }
         })
 
