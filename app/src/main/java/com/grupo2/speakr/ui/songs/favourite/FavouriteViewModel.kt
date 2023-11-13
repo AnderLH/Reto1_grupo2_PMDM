@@ -40,13 +40,30 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
         }
     }
 
-    fun filterSongs(query: String) {
+    fun filterSongsTitle(query: String) {
         val currentSongs = originalSongs.toMutableList()
 
         // Realiza el filtrado basado en la consulta
         if (query.isNotBlank()) {
             currentSongs.retainAll { song ->
                 song.title.contains(query, ignoreCase = true)
+            }
+        }
+        Log.d("LISTA", currentSongs.size.toString())
+
+        // Actualiza el LiveData con la lista filtrada o vacía si no hay
+
+
+        _items.value = Resource.success(currentSongs)
+    }
+
+    fun filterSongsAuthor(query: String) {
+        val currentSongs = originalSongs.toMutableList()
+
+        // Realiza el filtrado basado en la consulta
+        if (query.isNotBlank()) {
+            currentSongs.retainAll { song ->
+                song.author.contains(query, ignoreCase = true)
             }
         }
         Log.d("LISTA", currentSongs.size.toString())
