@@ -12,15 +12,19 @@
     <!-- Imagen -->
     <ImageView
         android:id="@+id/songImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@drawable/song_portrait_sample"
-        android:contentDescription="song portrait" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="song portrait"
+        android:src="@drawable/song_portrait_sample" />
 
     <!-- Contenedor para el nombre y el autor -->
+
+
+    <!-- Contenedor para las vistas -->
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/song_info"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -33,28 +37,55 @@
             android:fontFamily="sans-serif"
             android:text="Song Name"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <!-- Autor -->
-
         <TextView
             android:id="@+id/songAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Song Author"
             android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/ViewCount"
-            android:layout_width="67dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textColorLink="#FFFFFF" />
+            android:textSize="13sp" />
 
     </LinearLayout>
 
-    <!-- Botón con imagen -->
+    <!-- Contenedor para las vistas -->
+    <LinearLayout
+        android:id="@+id/viewscontainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_shape"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ViewCount"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textColor="@color/white"
+                android:textColorLink="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/song_views" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Botón de favoritos -->
     <ImageButton
         android:id="@+id/itemButton"
         android:layout_width="55dp"
@@ -63,4 +94,5 @@
         android:contentDescription="@string/favorite"
         android:src="@drawable/song_favorite_border"
         tools:ignore="ImageContrastCheck" />
+
 </LinearLayout>
