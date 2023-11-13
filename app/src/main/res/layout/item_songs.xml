@@ -36,6 +36,7 @@
             android:textSize="18sp" />
 
         <!-- Autor -->
+
         <TextView
             android:id="@+id/songAuthor"
             android:layout_width="wrap_content"
@@ -43,6 +44,14 @@
             android:text="Song Author"
             android:textColor="@color/white"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ViewCount"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorLink="#FFFFFF" />
+
     </LinearLayout>
 
     <!-- Botón con imagen -->

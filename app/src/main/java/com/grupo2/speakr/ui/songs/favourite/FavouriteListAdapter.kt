@@ -38,6 +38,7 @@ class FavouriteListAdapter(
         fun bind(song: Song) {
             binding.songName.text = song.title
             binding.songAuthor.text = song.author
+            binding.ViewCount.text = song.views.toString()
 
             // Cargar la miniatura de YouTube usando Glide
             Glide.with(binding.root)
@@ -61,7 +62,7 @@ class FavouriteListAdapter(
         }
 
         override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
-            return (oldItem.id == newItem.id && oldItem.title == newItem.title && oldItem.author == newItem.author && oldItem.url == newItem.url)
+            return (oldItem.id == newItem.id && oldItem.title == newItem.title && oldItem.author == newItem.author && oldItem.url == newItem.url && oldItem.views == newItem.views)
             // You can add more fields as needed to compare
         }
     }

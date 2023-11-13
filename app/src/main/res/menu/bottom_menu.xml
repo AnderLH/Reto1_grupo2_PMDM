@@ -9,5 +9,4 @@
         android:id="@+id/bottom_favorite"
         android:title="Favorite"
         android:icon="@drawable/favorite"/>
-
 </menu>

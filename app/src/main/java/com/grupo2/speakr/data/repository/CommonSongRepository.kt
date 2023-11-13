@@ -11,4 +11,6 @@ interface CommonSongRepository {
     suspend fun createFavouriteForUser(idSong : Int) : Resource<Int>
 
     suspend fun deleteFavouriteForUser(idSong: Int) : Resource<Int>
+
+    suspend fun addViewToSong(idSong : Int) : Resource<Int>
 }

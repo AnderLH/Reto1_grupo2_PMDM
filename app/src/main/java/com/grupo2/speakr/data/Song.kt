@@ -9,5 +9,6 @@ class Song (
     val title: String,
     val author: String,
     val url: String,
+    val views : Int,
     var favorite: Boolean = false
 ): Parcelable
