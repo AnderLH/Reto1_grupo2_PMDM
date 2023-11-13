@@ -6,12 +6,10 @@
     android:layout_marginStart="10dp"
     android:layout_marginEnd="15dp"
     android:layout_marginBottom="5dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/item_shape"
     android:orientation="horizontal">
 
     <!-- Imagen -->
-
-    <!-- Contenedor para el nombre y el autor -->
     <ImageView
         android:id="@+id/songImage"
         android:layout_width="55dp"
@@ -19,6 +17,7 @@
         android:src="@drawable/song_portrait_sample"
         android:contentDescription="song portrait" />
 
+    <!-- Contenedor para el nombre y el autor -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
