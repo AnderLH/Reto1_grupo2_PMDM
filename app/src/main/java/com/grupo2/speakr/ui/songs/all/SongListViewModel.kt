@@ -92,7 +92,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             song.favorite = true
             "${song.title}, Added to favorites"
         }
-
+        compareFavs()
         // Show a Toast message
         Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
     }
@@ -115,6 +115,20 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
             val repoResponse = getFavourites()
             _favs.value = repoResponse
             compareFavs()
+        }
+    }
+
+    fun addView(idSong: Int){
+        val id : Int = idSong
+        viewModelScope.launch {
+            addViewToSong(id)
+            updateSongList()
+        }
+    }
+
+    private suspend fun addViewToSong(idSong : Int): Resource<Int>{
+        return withContext(Dispatchers.IO){
+            songRepository.addViewToSong(idSong)
         }
     }
 

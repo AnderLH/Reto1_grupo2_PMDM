@@ -73,6 +73,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onSongsListClickItem(song: Song) {
+        viewModel.addView(song.id)
         openYoutubeLink(song.url)
     }
 

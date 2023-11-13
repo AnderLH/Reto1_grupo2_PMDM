@@ -72,6 +72,20 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
         updateSongList()
     }
 
+    fun addView(idSong: Int){
+        val id : Int = idSong
+        viewModelScope.launch {
+            addViewToSong(id)
+            updateSongList()
+        }
+    }
+
+    private suspend fun addViewToSong(idSong : Int): Resource<Int>{
+        return withContext(Dispatchers.IO){
+            songRepository.addViewToSong(idSong)
+        }
+    }
+
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
             var id : Int = 3

@@ -13,4 +13,6 @@ class SongRepository (private val repository : CommonSongRepository) {
     suspend fun createFavouriteForUser(idSong : Int) = repository.createFavouriteForUser(idSong)
 
     suspend fun deleteFavouriteForUser(idSong : Int) = repository.deleteFavouriteForUser(idSong)
+
+    suspend fun addViewToSong(idSong: Int) = repository.addViewToSong(idSong)
 }

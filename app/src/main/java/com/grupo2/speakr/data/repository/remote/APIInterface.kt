@@ -9,6 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface APIInterface {
@@ -32,5 +33,8 @@ interface APIInterface {
 
     @DELETE("users/favourites/delete/{id}")
     suspend fun deleteFavoutiteForUser(@Path("id") songId: Int) : Response<Int>
+
+    @PUT("songs/view/{id}")
+    suspend fun addViewToSong(@Path("id")songId : Int) : Response<Int>
 
 }
