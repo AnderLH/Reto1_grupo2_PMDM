@@ -42,6 +42,8 @@ class FavouriteFragment : Fragment() {
 
         autoComplete.setAdapter(adapter)
         autoComplete.setOnClickListener{
+            val emptyString = ""
+            binding.searchSong.setText(emptyString).toString()
             AdapterView.OnItemClickListener{
                     adapterView, view, i, l ->
                 val selectedItem = adapterView.getItemAtPosition(i)
@@ -81,7 +83,7 @@ class FavouriteFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString()
-                if(binding.autoCompleteTxt.text.equals("Titulo")) {
+                if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
                     viewModel.filterSongsTitle(query)
                 }else {
                     viewModel.filterSongsAuthor(query)
