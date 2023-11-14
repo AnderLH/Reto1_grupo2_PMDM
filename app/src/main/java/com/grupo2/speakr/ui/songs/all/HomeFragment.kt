@@ -77,25 +77,34 @@ class HomeFragment : Fragment() {
             }
         })
 
-            searchEditText.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString()
+                if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
+                    viewModel.filterSongsTitle(query)
+                }else if(binding.autoCompleteTxt.text.toString() == filterTypes[1]) {
+                    viewModel.filterSongsAuthor(query)
                 }
+            }
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
+        })
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val query = s.toString()
-                    if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
-                        viewModel.filterSongsTitle(query)
-                    }else if(binding.autoCompleteTxt.text.toString() == filterTypes[1]) {
-                        viewModel.filterSongsAuthor(query)
-                    }
-                }
+     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            val query = s.toString()
+            if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
+                viewModel.filterSongsTitle(query)
+            }else {
+                viewModel.filterSongsAuthor(query)
+            }
+        }
 
-            })
-
-
+        })
         return view
     }
 
@@ -119,8 +128,6 @@ class HomeFragment : Fragment() {
         Log.i("Image", song.favorite.toString())
         val id: Int = song.id
         viewModel.toggleFavourite(song, requireContext())
-        // You can access the details of the `song` and perform the desired action.
-        // For example, you can change the state of the ImageButton to yellow.
     }
 
 }
