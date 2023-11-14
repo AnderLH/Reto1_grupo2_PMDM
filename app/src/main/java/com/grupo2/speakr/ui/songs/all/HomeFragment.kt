@@ -95,15 +95,6 @@ class HomeFragment : Fragment() {
             }
 
         })
-
-//     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//            val query = s.toString()
-//            if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
-//                viewModel.filterSongsTitle(query)
-//            }else {
-//                viewModel.filterSongsAuthor(query)
-//            }
-//         }
         return view
     }
 

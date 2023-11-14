@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.grupo2.speakr.R
 import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
@@ -16,7 +17,7 @@ import com.grupo2.speakr.ui.users.login.LoginActivity
 import com.grupo2.speakr.utils.Resource
 
 
-class RegisterActivity : ComponentActivity() {
+class RegisterActivity : AppCompatActivity() {
     private val userRepository = RemoteUserDataSource()
     private val viewModel: RegisterViewModel by viewModels { RegisterViewModelFactory(
         userRepository
@@ -26,7 +27,8 @@ class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
+        setSupportActionBar(findViewById(R.id.register_toolbar))
+        title = ""
         dataManager.open()
 
         var registerFilled:Boolean

@@ -10,7 +10,7 @@
     <!-- Colores personalizados -->
     <color name="colorPrimary">#6373CD</color>
     <color name="colorPrimaryDark">#4151b9</color>
-    <color name="colorAccent">#cdbd63</color>
+    <color name="colorAccent">#9F9349</color>
 
     <style name="Theme.Speakr.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/colorPrimary</item>

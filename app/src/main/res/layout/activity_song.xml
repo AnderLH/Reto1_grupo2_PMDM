@@ -20,12 +20,11 @@
             android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/home"
+            android:layout_gravity="start"/>
 
         <!-- FrameLayout for Fragments -->
-
-        <!-- CoordinatorLayout for BottomAppBar and BottomNavigation -->
-
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
@@ -34,6 +33,7 @@
             android:layout_marginTop="0dp"
             android:paddingBottom="65dp"/>
 
+        <!-- CoordinatorLayout for BottomAppBar and BottomNavigation -->
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -64,12 +64,7 @@
                         app:menu="@menu/bottom_menu" />
                 </LinearLayout>
             </com.google.android.material.bottomappbar.BottomAppBar>
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
