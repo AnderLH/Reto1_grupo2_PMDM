@@ -36,5 +36,6 @@ interface APIInterface {
 
     @PUT("songs/view/{id}")
     suspend fun addViewToSong(@Path("id")songId : Int) : Response<Int>
+    
 
 }

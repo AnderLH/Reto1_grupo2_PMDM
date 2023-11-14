@@ -33,7 +33,7 @@ class RegisterActivity : ComponentActivity() {
 
 
         findViewById<Button>(R.id.returnButton).setOnClickListener {
-            val intent = Intent(applicationContext, RegisterActivity::class.java)
+            val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
