@@ -1,5 +1,6 @@
 package com.grupo2.speakr.ui.songs
 
+import android.content.Intent
 import com.grupo2.speakr.ui.songs.all.HomeFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,8 @@ import com.google.android.material.navigation.NavigationView
 import com.grupo2.speakr.R
 import com.grupo2.speakr.databinding.ActivitySongBinding
 import com.grupo2.speakr.ui.songs.favourite.FavouriteFragment
+import com.grupo2.speakr.ui.users.login.LoginActivity
+import com.grupo2.speakr.ui.users.password.PasswordFragment
 
 class SongActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,7 +53,12 @@ class SongActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
        when(item.itemId){
-           //R.id.nav_prime -> openFragment(PrimeFragment())
+           R.id.bottom_change_password -> openFragment(PasswordFragment())
+           R.id.bottom_logout -> {
+               val intent = Intent(this, LoginActivity::class.java)
+               intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+               startActivity(intent)
+           }
        }
        binding.drawerLayout.closeDrawer(GravityCompat.START)
        return true
