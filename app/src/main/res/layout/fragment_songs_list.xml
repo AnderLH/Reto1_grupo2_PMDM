@@ -12,6 +12,7 @@
         tools:ignore="UselessParent">
 
         <!-- Sección de Filtro en la parte superior -->
+
         <LinearLayout
             android:id="@+id/top_section"
             android:layout_width="match_parent"
@@ -20,7 +21,8 @@
             android:paddingStart="16dp"
             android:paddingTop="0dp"
             android:paddingEnd="16dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:gravity="center">
 
             <!-- Campo de búsqueda -->
             <EditText
@@ -30,13 +32,12 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@android:drawable/editbox_background"
-                android:hint="Buscar"
+                android:hint="@string/find"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:textColorHint="#757575" />
 
             <!-- Botón con menú desplegable de opciones -->
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,14 +49,12 @@
                     android:id="@+id/auto_complete_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/select"
+                    android:hint="@string/filter"
                     android:inputType="none"
                     tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
+
 
         <!-- Sección de Listas con RecyclerView debajo de top_section -->
         <androidx.recyclerview.widget.RecyclerView

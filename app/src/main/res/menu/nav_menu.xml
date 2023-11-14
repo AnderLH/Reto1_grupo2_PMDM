@@ -7,17 +7,17 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/bottom_change_name"
-            android:title="Change Name"
-            android:icon="@drawable/ic_launcher_background"/>
+            android:id="@+id/bottom_change_email"
+            android:title="Change Email"
+            android:icon="@drawable/mail_change"/>
         <item
             android:id="@+id/bottom_change_password"
             android:title="Change Password"
-            android:icon="@drawable/ic_launcher_background"/>
+            android:icon="@drawable/password_change"/>
         <item
             android:id="@+id/bottom_logout"
             android:title="Log Out"
-            android:icon="@drawable/ic_launcher_background"/>
+            android:icon="@drawable/logout"/>
 
     </group>
 
