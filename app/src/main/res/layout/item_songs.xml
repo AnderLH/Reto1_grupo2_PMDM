@@ -40,6 +40,7 @@
             android:textSize="17sp" />
 
         <!-- Autor -->
+
         <TextView
             android:id="@+id/songAuthor"
             android:layout_width="wrap_content"
@@ -82,7 +83,6 @@
                 android:src="@drawable/song_views" />
 
         </LinearLayout>
-
     </LinearLayout>
 
     <!-- Botón de favoritos -->

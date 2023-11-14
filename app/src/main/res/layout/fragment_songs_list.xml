@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <!-- Sección de Filtro en la parte superior -->
         <LinearLayout
@@ -31,7 +32,8 @@
                 android:background="@android:drawable/editbox_background"
                 android:hint="Buscar"
                 android:inputType="text"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:textColorHint="#757575" />
 
             <!-- Botón con menú desplegable de opciones -->
 
@@ -46,9 +48,10 @@
                     android:id="@+id/auto_complete_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/filter"
+                    android:hint="@string/select"
                     android:inputType="none"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 

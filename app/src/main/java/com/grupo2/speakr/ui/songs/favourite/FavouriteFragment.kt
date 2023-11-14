@@ -115,10 +115,5 @@ class FavouriteFragment : Fragment() {
         Log.i("Image", song.favorite.toString())
         val id : Int = song.id
         viewModel.deleteFav(song, requireContext())
-
-        //viewModel.createFav(id)
-
-        // You can access the details of the `song` and perform the desired action.
-        // For example, you can change the state of the ImageButton to yellow.
     }
 }
