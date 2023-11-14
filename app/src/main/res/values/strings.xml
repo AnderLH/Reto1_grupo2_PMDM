@@ -4,6 +4,7 @@
     <string name="nav_close">Close Navigator Drawer</string>
 
     <string name="filter">filtro</string>
+    <string name="select">filtro</string>
 
     <string name="emailString">EMAIL</string>
     <string name="passString">PASSWORD</string>

@@ -2,9 +2,11 @@ package com.grupo2.speakr.ui.songs.all
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.RestrictionEntry.TYPE_NULL
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,7 +40,7 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
         val searchEditText = binding.searchSong
-        val filterTypes = listOf<String>("Titulo", "Autor")
+        val filterTypes = listOf<String>("Título", "Autor")
         val autoComplete: AutoCompleteTextView = binding.autoCompleteTxt
         val adapter = context?.let { ArrayAdapter(it, R.layout.filter_menu_item, filterTypes) }
 
@@ -74,24 +77,24 @@ class HomeFragment : Fragment() {
             }
         })
 
-
-        searchEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString()
-                if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
-                    viewModel.filterSongsTitle(query)
-                }else {
-                    viewModel.filterSongsAuthor(query)
+            searchEditText.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
                 }
-            }
 
-        })
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val query = s.toString()
+                    if(binding.autoCompleteTxt.text.toString() == filterTypes[0]) {
+                        viewModel.filterSongsTitle(query)
+                    }else if(binding.autoCompleteTxt.text.toString() == filterTypes[1]) {
+                        viewModel.filterSongsAuthor(query)
+                    }
+                }
+
+            })
+
 
         return view
     }

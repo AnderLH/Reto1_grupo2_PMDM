@@ -41,6 +41,7 @@ class FavouriteFragment : Fragment() {
         val adapter = context?.let { ArrayAdapter(it, R.layout.filter_menu_item, filterTypes) }
 
         autoComplete.setAdapter(adapter)
+        //autoComplete.setText(filterTypes[0])
         autoComplete.setOnClickListener{
             val emptyString = ""
             binding.searchSong.setText(emptyString).toString()
