@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -111,8 +110,6 @@ class FavouriteFragment : Fragment() {
     }
 
     private fun onImageButtonClick(song: Song) {
-        // Handle the click event of the ImageButton here
-        Log.i("Image", song.favorite.toString())
         val id : Int = song.id
         viewModel.deleteFav(song, requireContext())
     }

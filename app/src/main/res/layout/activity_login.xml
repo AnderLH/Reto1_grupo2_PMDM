@@ -25,17 +25,17 @@
 
 
     <ImageView
-        android:id="@+id/login_icon"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:id="@+id/register_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        android:contentDescription="@string/login_icon_description" />
+        app:layout_constraintVertical_bias="0.125"
+        app:srcCompat="@drawable/circle_launcher" />
 
     <!-- Centrado vertical y horizontal del TextInputLayout para Email -->
     <com.google.android.material.textfield.TextInputLayout
@@ -47,8 +47,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40">
+        app:layout_constraintTop_toBottomOf="@+id/register_icon"
+        app:layout_constraintVertical_bias="0.12">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailAddress"
@@ -60,7 +60,7 @@
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
-            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Centrado vertical y horizontal del TextInputLayout para Password -->
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailAddressLayout"
-        app:layout_constraintVertical_bias="0.100000024">
+        app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -87,20 +87,22 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColorHint="#546E7A"
-            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+            tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
+
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkBox"
+        style="@style/CustomCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rememberMe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
-        app:layout_constraintVertical_bias="0.20" />
+        app:layout_constraintVertical_bias="0.12" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -113,8 +115,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -127,8 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonRegister"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.846"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
         tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

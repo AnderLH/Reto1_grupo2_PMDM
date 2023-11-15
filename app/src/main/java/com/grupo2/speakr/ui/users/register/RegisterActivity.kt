@@ -3,11 +3,9 @@ package com.grupo2.speakr.ui.users.register
 import DataManager
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.grupo2.speakr.R
@@ -52,19 +50,15 @@ class RegisterActivity : AppCompatActivity() {
             if(email.isBlank() or name.isBlank() or surname.isBlank() or password.isBlank() or passwordRepeated.isBlank()) {
                 registerFilled = false
                 Toast.makeText(this, "The information provided is not valid, make sure to fill everything", Toast.LENGTH_SHORT).show()
-                Log.i("RegisterCheck", "register invalid")
             }
 
             if (registerFilled and (password == passwordRepeated)) {
-                Log.i("RegisterCheck", "The Register is valid")
                 val user = User(0,name, surname, email, password)
                 viewModel.registerUser(user)
 
                 viewModel.created.observe(this) {
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
-                            Log.i("ConnectionCheck", it.message.toString())
-
                             dataManager.insertLog(user.email, user.password)
 
                             val intent = Intent(applicationContext, LoginActivity::class.java)
@@ -74,7 +68,6 @@ class RegisterActivity : AppCompatActivity() {
                         }
                         Resource.Status.ERROR -> {
                             Toast.makeText(this, "The login you have provided is invalid,make sure to fill everything", Toast.LENGTH_LONG).show()
-                            Log.i("ConnectionCheck", it.message.toString())
                         }
                         Resource.Status.LOADING -> {
                             // for the moment

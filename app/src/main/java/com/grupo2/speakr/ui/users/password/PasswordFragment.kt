@@ -1,22 +1,17 @@
 package com.grupo2.speakr.ui.users.password
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.grupo2.speakr.R
 import com.grupo2.speakr.data.PasswordAuth
 import com.grupo2.speakr.data.repository.remote.RemoteUserDataSource
-import com.grupo2.speakr.ui.songs.all.HomeFragment
-
 import com.grupo2.speakr.utils.Resource
 
 // TODO: Rename parameter arguments, choose names that match
@@ -74,27 +69,14 @@ class PasswordFragment : Fragment()  {
                 val passwordAuth = PasswordAuth(oldPassword, newPassword)
 
                 viewModel.updatePassword(passwordAuth)
-                Log.i("password", passwordAuth.oldPassword )
-                Log.i("password", passwordAuth.newPassword )
-
                 viewModel.passwords.observe(this) { result ->
-                    Log.i("result", result?.status.toString())
-                    Log.i("result", "Received data: ${result?.data}")
                     if (result != null) {
                         when (result.status) {
                             Resource.Status.SUCCESS -> {
-                                // Handle successful password change
-//                                if (result != null) {
-                                Log.i("cambio", "success")
                                 editText1.setText("")
                                 editText2.setText("")
                                 editText3.setText("")
                                 Toast.makeText(requireContext(), "Password changed successfully!", Toast.LENGTH_SHORT).show()
-
-//                                closeFragment()
-
-
-//                                    }
                             }
 
                             Resource.Status.ERROR -> {
@@ -121,21 +103,10 @@ class PasswordFragment : Fragment()  {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            // Do something with the collected data
-            // For example, you can log it or pass it to your ViewModel
-
-            // viewModel.updateData(text1, text2)
         }
 
         return view
     }
-
-//    private fun closeFragment() {
-//        fragmentManager?.let {
-//            it.beginTransaction().remove(this).commit()
-//        }
-//    }
-
 
     companion object {
         @JvmStatic

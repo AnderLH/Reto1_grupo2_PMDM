@@ -1,15 +1,14 @@
 package com.grupo2.speakr.ui.songs.all
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.grupo2.speakr.data.Song
-import com.grupo2.speakr.databinding.ItemSongsBinding
 import com.bumptech.glide.Glide
 import com.grupo2.speakr.R
+import com.grupo2.speakr.data.Song
+import com.grupo2.speakr.databinding.ItemSongsBinding
 import java.util.regex.Pattern
 
 class SongAdapter(
@@ -26,7 +25,6 @@ class SongAdapter(
         val song = getItem(position)
         holder.bind(song)
         holder.itemView.setOnClickListener {
-            Log.e("statusInfo", "songAdapter " + song.id.toString())
             onClickListener(song)
         }
     }
@@ -43,7 +41,7 @@ class SongAdapter(
             Glide.with(binding.root)
                 .load(getYouTubeThumbnailUrl(song.url))
                 .centerCrop()
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.song_portrait_sample)
                 .into(binding.songImage)
 
             binding.itemButton.setOnClickListener {
@@ -70,7 +68,6 @@ class SongAdapter(
 
         override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
             return (oldItem.id == newItem.id && oldItem.title == newItem.title && oldItem.author == newItem.author && oldItem.url == newItem.url && oldItem.views == newItem.views)
-            // You can add more fields as needed to compare
         }
     }
     private fun getYouTubeThumbnailUrl(videoUrl: String): String {
@@ -86,8 +83,6 @@ class SongAdapter(
         return if (matcher.find()) {
             matcher.group()
         } else {
-            // Si no se puede encontrar el ID del video, puedes manejarlo como prefieras
-            // En este ejemplo, simplemente devolvemos la URL completa
             videoUrl
         }
     }

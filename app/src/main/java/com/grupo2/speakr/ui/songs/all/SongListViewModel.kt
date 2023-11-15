@@ -1,7 +1,6 @@
 package com.grupo2.speakr.ui.songs.all
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -49,7 +48,6 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
                     if (fav.id == song.id) {
                         song.favorite = true
                     }
-                    Log.i("favs", song.favorite.toString())
                 }
             }
         }
@@ -72,11 +70,6 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
                 song.title.contains(query, ignoreCase = true)
             }
         }
-        Log.d("LISTA", currentSongs.size.toString())
-
-        // Actualiza el LiveData con la lista filtrada o vacía si no hay
-
-
         _items.value = Resource.success(currentSongs)
     }
 
@@ -89,11 +82,6 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
                 song.author.contains(query, ignoreCase = true)
             }
         }
-        Log.d("LISTA", currentSongs.size.toString())
-
-        // Actualiza el LiveData con la lista filtrada o vacía si no hay
-
-
         _items.value = Resource.success(currentSongs)
     }
 
@@ -149,11 +137,7 @@ class SongViewModel(private val songRepository: CommonSongRepository) : ViewMode
 
     private suspend fun getFavourites(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
-
-            Log.i("info", songRepository.getFavouriteSongsFromUser().toString())
             songRepository.getFavouriteSongsFromUser()
-
-
         }
     }
 

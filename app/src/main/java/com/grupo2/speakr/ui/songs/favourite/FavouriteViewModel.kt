@@ -49,11 +49,6 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
                 song.title.contains(query, ignoreCase = true)
             }
         }
-        Log.d("LISTA", currentSongs.size.toString())
-
-        // Actualiza el LiveData con la lista filtrada o vacía si no hay
-
-
         _items.value = Resource.success(currentSongs)
     }
 
@@ -66,11 +61,6 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
                 song.author.contains(query, ignoreCase = true)
             }
         }
-        Log.d("LISTA", currentSongs.size.toString())
-
-        // Actualiza el LiveData con la lista filtrada o vacía si no hay
-
-
         _items.value = Resource.success(currentSongs)
     }
 
@@ -79,7 +69,6 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
          // You need to implement this function to get the song's title
         viewModelScope.launch {
             _delete.value = deleteFavouriteSong(id)
-            Log.i("delete", "ok")
         }
 
         // Show a Toast message indicating the deletion
@@ -106,10 +95,7 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
     private suspend fun getSongsFromRepository(): Resource<List<Song>>? {
         return withContext(Dispatchers.IO) {
             var id : Int = 3
-            Log.i("info", songRepository.getFavouriteSongsFromUser().toString())
             songRepository.getFavouriteSongsFromUser()
-
-
         }
     }
 

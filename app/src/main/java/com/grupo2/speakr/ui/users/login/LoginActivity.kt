@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -43,7 +42,6 @@ class LoginActivity : AppCompatActivity() {
 
         // Set the state of the checkbox accordingly
         checkBox.isChecked = isCheckBoxChecked
-        Log.i("checkbox" , checkBox.isChecked.toString())
 
         if (isCheckBoxChecked) {
             dataManager.open()
@@ -70,9 +68,6 @@ class LoginActivity : AppCompatActivity() {
             val broughtEmail = bundle?.getStringArray("loginInfo")?.get(0)
             val broughtPassword = bundle?.getStringArray("loginInfo")?.get(1)
 
-            Log.i("infoCheck", broughtEmail.toString())
-            Log.i("infoCheck", broughtPassword.toString())
-
             findViewById<EditText>(R.id.emailAddress).setText(broughtEmail)
             findViewById<EditText>(R.id.password).setText(broughtPassword)
         }
@@ -80,8 +75,6 @@ class LoginActivity : AppCompatActivity() {
         findViewById<Button>(R.id.buttonAccept).setOnClickListener {
             val email: String = findViewById<EditText>(R.id.emailAddress).text.toString()
             val password: String = findViewById<EditText>(R.id.password).text.toString()
-            Log.i("CheckLogInUser", email)
-            Log.i("CheckLogInUser", password)
 
             // Create a LoginUser object with the email and password
             val loginUser = LoginUser(email, password)
@@ -109,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
                     Resource.Status.ERROR -> {
                         // Handle login error
                         Toast.makeText(this, "The login provided is not valid, please try again", Toast.LENGTH_SHORT).show()
-                        Log.i("ConnectionCheck", result.message.orEmpty())
                     }
                     Resource.Status.LOADING -> {
                         // Handle loading state (optional)

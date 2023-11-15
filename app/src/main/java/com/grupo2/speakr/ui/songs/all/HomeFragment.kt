@@ -2,22 +2,17 @@ package com.grupo2.speakr.ui.songs.all
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.RestrictionEntry.TYPE_NULL
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -52,7 +47,6 @@ class HomeFragment : Fragment() {
             AdapterView.OnItemClickListener{
                     adapterView, view, i, l ->
                 val selectedItem = adapterView.getItemAtPosition(i)
-                //Toast.makeText(this, "Item: $selectedItem", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -115,8 +109,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun onImageButtonClick(song: Song) {
-        // Handle the click event of the ImageButton here
-        Log.i("Image", song.favorite.toString())
         val id: Int = song.id
         viewModel.toggleFavourite(song, requireContext())
     }

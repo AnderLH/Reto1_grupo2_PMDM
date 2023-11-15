@@ -19,16 +19,9 @@ import com.grupo2.speakr.ui.users.password.PasswordViewModel
 import com.grupo2.speakr.ui.users.password.PasswordViewModelFactory
 import com.grupo2.speakr.utils.Resource
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EmailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EmailFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private val userRepository = RemoteUserDataSource()
@@ -77,29 +70,18 @@ class EmailFragment : Fragment() {
                     if (result != null) {
                         when (result.status) {
                             Resource.Status.SUCCESS -> {
-                                // Handle successful password change
-//                                if (result != null) {
                                 Log.i("cambio", "success")
                                 editText1.setText("")
                                 editText2.setText("")
                                 editText3.setText("")
                                 Toast.makeText(requireContext(), "Email changed successfully!", Toast.LENGTH_SHORT).show()
-
-//                                closeFragment()
-
-
-//                                    }
                             }
 
                             Resource.Status.ERROR -> {
-                                // Handle password change error
-                                // Show an error toast message
                                 Toast.makeText(requireContext(), "Error changing Email. Please try again.", Toast.LENGTH_SHORT).show()
                             }
 
                             Resource.Status.LOADING -> {
-                                // Handle loading state (optional)
-                                // You can show a loading indicator or perform other actions while waiting
                             }
                         }
                     }
