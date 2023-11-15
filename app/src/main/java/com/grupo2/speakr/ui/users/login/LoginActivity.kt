@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: LoginViewModel by viewModels { LoginViewModelFactory(
         userRepository
     ) }
-    val dataManager = DataManager(this) // Initialize the DataManager with your context
+    private val dataManager = DataManager(this) // Initialize the DataManager with your context
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
 
-        dataManager.open()
         val bundle: Bundle? = intent.extras
         val isCheckBoxChecked = getBooleanValue("checkbox_checked", false)
         val checkBox = findViewById<CheckBox>(R.id.checkBox)
@@ -47,7 +46,9 @@ class LoginActivity : AppCompatActivity() {
         Log.i("checkbox" , checkBox.isChecked.toString())
 
         if (isCheckBoxChecked) {
+            dataManager.open()
             val rememberUser: LoginUser? = dataManager.getLastLog()
+            dataManager.close()
             if (rememberUser != null) {
                 // Populate email and password fields from the remembered user's data
                 findViewById<EditText>(R.id.emailAddress).setText(rememberUser.email.toString())
@@ -95,10 +96,11 @@ class LoginActivity : AppCompatActivity() {
                         // Handle successful login
                         result.data?.let { data ->
                             Speaker.userPreferences.saveAuthToken(data.accessToken)
-
-
-                            saveBooleanValue("checkbox_checked", checkBox.isChecked)
+                            dataManager.open()
+                            dataManager.insertLog(email, password)
                             dataManager.close()
+                            saveBooleanValue("checkbox_checked", checkBox.isChecked)
+
                             val intent = Intent(applicationContext, SongActivity::class.java)
                             startActivity(intent)
                             finish()
@@ -115,8 +117,10 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+
         }
-        dataManager.close()
+
+
 
     }
 

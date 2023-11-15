@@ -83,5 +83,8 @@ class DataManager(context: Context) {
 
         return logEntry
     }
+    fun deleteAllRows() {
+        database?.delete(TABLE_NAME, null, null)
+    }
 
 }
