@@ -14,13 +14,10 @@
         android:id="@+id/songImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:contentDescription="song portrait"
+        android:contentDescription="@string/song_description"
         android:src="@drawable/song_portrait_sample" />
 
     <!-- Contenedor para el nombre y el autor -->
-
-
-    <!-- Contenedor para las vistas -->
     <LinearLayout
         android:id="@+id/song_info"
         android:layout_width="150dp"
@@ -35,20 +32,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Song Name"
+            android:text="@string/song_name"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            tools:ignore="TextContrastCheck" />
 
         <!-- Autor -->
-
         <TextView
             android:id="@+id/songAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Song Author"
+            android:text="@string/song_author"
             android:textColor="@color/white"
-            android:textSize="13sp" />
-
+            android:textSize="13sp"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <!-- Contenedor para las vistas -->
@@ -66,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/item_shape"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/ViewCount"
@@ -80,8 +78,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/song_views" />
-
+                android:src="@drawable/song_views"
+                android:importantForAccessibility="no" />
         </LinearLayout>
     </LinearLayout>
 
@@ -94,5 +92,4 @@
         android:contentDescription="@string/favorite"
         android:src="@drawable/song_favorite_border"
         tools:ignore="ImageContrastCheck" />
-
 </LinearLayout>
