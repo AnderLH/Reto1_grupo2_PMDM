@@ -1,7 +1,7 @@
 package com.grupo2.speakr.data.repository.remote
 
 import com.grupo2.speakr.data.LoginUser
-import com.grupo2.speakr.data.MailChange
+import com.grupo2.speakr.data.MailAuth
 import com.grupo2.speakr.data.PasswordAuth
 import com.grupo2.speakr.data.Song
 import com.grupo2.speakr.data.User
@@ -43,6 +43,6 @@ interface APIInterface {
     suspend fun changePassword(@Body passwordAuth : PasswordAuth) : Response<Void>
 
     @PUT("users/changeEmail")
-    suspend fun changeEmail(@Body emailChange: MailChange) : Response<Int>
+    suspend fun changeEmail(@Body emailAuth: MailAuth) : Response<Void>
 
 }

@@ -1,7 +1,7 @@
 package com.grupo2.speakr.data.repository.remote
 
 import com.grupo2.speakr.data.LoginUser
-import com.grupo2.speakr.data.MailChange
+import com.grupo2.speakr.data.MailAuth
 import com.grupo2.speakr.data.PasswordAuth
 import com.grupo2.speakr.data.User
 import com.grupo2.speakr.data.repository.CommonUserRepository
@@ -18,8 +18,8 @@ class RemoteUserDataSource: BaseDataSource(), CommonUserRepository {
         RetrofitClient.apiInterface.changePassword(passwordAuth)
     }
 
-    override suspend fun changeEmail(mailChange: MailChange) = getResult {
-        RetrofitClient.apiInterface.changeEmail(mailChange)
+    override suspend fun changeEmail(mailAuth: MailAuth) = getResult {
+        RetrofitClient.apiInterface.changeEmail(mailAuth)
     }
 
 }
