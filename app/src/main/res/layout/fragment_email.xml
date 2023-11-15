@@ -2,57 +2,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:background="@android:color/background_light">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
+        android:background="@android:color/white"
         android:elevation="4dp"
-        android:background="@android:color/white">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <!-- Campo de Correo Electrónico Actual -->
-        <EditText
-            android:id="@+id/editTextCurrentEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextCurrentEmailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo Electrónico Actual"
-            android:inputType="textEmailAddress"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNewEmailLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.40">
 
-        <!-- Campo de Nuevo Correo Electrónico -->
-        <EditText
-            android:id="@+id/editTextNewEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nuevo Correo Electrónico"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCurrentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/current_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#546E7A"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo de Confirmar Nuevo Correo Electrónico -->
-        <EditText
-            android:id="@+id/editTextConfirmEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextNewEmailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirmar Nuevo Correo Electrónico"
-            android:inputType="textEmailAddress"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextConfirmEmailLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCurrentEmailLayout"
+            app:layout_constraintVertical_bias="0.1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/new_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#546E7A"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextConfirmEmailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnChangeEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNewEmailLayout"
+            app:layout_constraintVertical_bias="0.1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextConfirmEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/confirm_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColorHint="#546E7A"
+                tools:ignore="DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Botón para Cambiar Correo Electrónico -->
         <Button
             android:id="@+id/btnChangeEmail"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Cambiar Correo Electrónico"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPrimary"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/btn_change_email"
+            android:textColor="@android:color/white"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
