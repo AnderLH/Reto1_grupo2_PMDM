@@ -86,7 +86,9 @@ class PasswordFragment : Fragment()  {
                                 // Handle successful password change
 //                                if (result != null) {
                                 Log.i("cambio", "success")
-
+                                editText1.setText("")
+                                editText2.setText("")
+                                editText3.setText("")
                                 Toast.makeText(requireContext(), "Password changed successfully!", Toast.LENGTH_SHORT).show()
 
 //                                closeFragment()
@@ -111,6 +113,8 @@ class PasswordFragment : Fragment()  {
             } else {
                 // Passwords do not match
                 // Show a toast message indicating the mismatch
+
+                editText3.setText("")
                 Toast.makeText(
                     requireContext(),
                     "New passwords do not match. Please check again.",
