@@ -50,12 +50,12 @@ class LoginActivity : AppCompatActivity() {
             val rememberUser: LoginUser? = dataManager.getLastLog()
             if (rememberUser != null) {
                 // Populate email and password fields from the remembered user's data
-                findViewById<EditText>(R.id.emailAddres).setText(rememberUser.email.toString())
+                findViewById<EditText>(R.id.emailAddress).setText(rememberUser.email.toString())
                 findViewById<EditText>(R.id.password).setText(rememberUser.password.toString())
             }
         } else {
             // If the checkbox is not checked, clear the email and password fields
-            findViewById<EditText>(R.id.emailAddres).text.clear()
+            findViewById<EditText>(R.id.emailAddress).text.clear()
             findViewById<EditText>(R.id.password).text.clear()
         }
 
@@ -72,12 +72,12 @@ class LoginActivity : AppCompatActivity() {
             Log.i("infoCheck", broughtEmail.toString())
             Log.i("infoCheck", broughtPassword.toString())
 
-            findViewById<EditText>(R.id.emailAddres).setText(broughtEmail)
+            findViewById<EditText>(R.id.emailAddress).setText(broughtEmail)
             findViewById<EditText>(R.id.password).setText(broughtPassword)
         }
 
         findViewById<Button>(R.id.buttonAccept).setOnClickListener {
-            val email: String = findViewById<EditText>(R.id.emailAddres).text.toString()
+            val email: String = findViewById<EditText>(R.id.emailAddress).text.toString()
             val password: String = findViewById<EditText>(R.id.password).text.toString()
             Log.i("CheckLogInUser", email)
             Log.i("CheckLogInUser", password)

@@ -14,13 +14,27 @@
     <string name="registerButtonString">Register</string>
     <string name="nameString">NAME</string>
     <string name="surnameString">SURNAME</string>
-    <string name="login">Log in</string>
+    <string name="login">Login</string>
     <string name="home">Home</string>
     <string name="favorite">Favorite</string>
     <string name="email_change">Change Email</string>
     <string name="pass_change">Change Password</string>
     <string name="returnToLogin">Return</string>
     <string name="find">Find</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="current_email">Current Email</string>
+    <string name="new_email">New Email</string>
+    <string name="confirm_email">Confirm New Email</string>
+    <string name="btn_change_email">Change Email</string>
+    <string name="password_input_description">Password input field</string>
+    <string name="login_icon_description">Login icon</string>
+    <string name="email_input_description">Description for email input</string>
+    <string name="views_count_label">Views:</string>
+    <string name="song_description">Song portrait</string>
+    <string name="song_name">Song Name</string>
+    <string name="song_author">Song Author</string>
+    <string name="favorite_button_description">Add to Favorites</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm New Password</string>
+    <string name="change_password">Change Password</string>
 </resources>
