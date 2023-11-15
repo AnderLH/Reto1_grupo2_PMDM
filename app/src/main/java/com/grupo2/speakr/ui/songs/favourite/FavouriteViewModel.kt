@@ -50,6 +50,7 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
             }
         }
         _items.value = Resource.success(currentSongs)
+
     }
 
     fun filterSongsAuthor(query: String) {
@@ -69,13 +70,13 @@ class FavouriteViewModel(private val songRepository: CommonSongRepository) : Vie
          // You need to implement this function to get the song's title
         viewModelScope.launch {
             _delete.value = deleteFavouriteSong(id)
+            updateSongList()
         }
 
         // Show a Toast message indicating the deletion
         val toastMessage = "${song?.title}, Deleted from favorites"
         Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
 
-        updateSongList()
     }
 
     fun addView(idSong: Int){
