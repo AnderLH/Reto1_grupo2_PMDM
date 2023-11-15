@@ -54,8 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_icon"
-        app:layout_constraintVertical_bias="0.05"
-        app:placeholderText="Email">
+        app:layout_constraintVertical_bias="0.05">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
@@ -92,8 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailLayout"
-        app:layout_constraintVertical_bias="0.05"
-        app:placeholderText="Password">
+        app:layout_constraintVertical_bias="0.05">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/firstPassword"
@@ -130,8 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstPasswordLayout"
-        app:layout_constraintVertical_bias="0.05"
-        app:placeholderText="Repeat Password">
+        app:layout_constraintVertical_bias="0.05">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/secondPassword"
@@ -164,8 +161,7 @@
         app:layout_constraintEnd_toStartOf="@+id/surnameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondPasswordLayout"
-        app:layout_constraintVertical_bias="0.1"
-        app:placeholderText="Name">
+        app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name"
@@ -195,8 +191,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nameLayout"
         app:layout_constraintTop_toBottomOf="@+id/secondPasswordLayout"
-        app:layout_constraintVertical_bias="0.1"
-        app:placeholderText="Surname">
+        app:layout_constraintVertical_bias="0.1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/surname"
