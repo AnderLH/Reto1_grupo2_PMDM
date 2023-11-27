@@ -20,9 +20,9 @@
     <!-- Contenedor para el nombre y el autor -->
     <LinearLayout
         android:id="@+id/song_info"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -34,7 +34,7 @@
             android:fontFamily="sans-serif"
             android:text="@string/song_name"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="18sp"
             tools:ignore="TextContrastCheck" />
 
         <!-- Autor -->
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:text="@string/song_author"
             android:textColor="@color/white"
-            android:textSize="13sp"
+
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
@@ -53,8 +53,6 @@
         android:id="@+id/viewscontainer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -68,7 +66,7 @@
 
             <TextView
                 android:id="@+id/ViewCount"
-                android:layout_width="55dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textColor="@color/white"
@@ -78,8 +76,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/song_views"
-                android:importantForAccessibility="no" />
+                android:importantForAccessibility="no"
+                android:src="@drawable/song_views" />
         </LinearLayout>
     </LinearLayout>
 
